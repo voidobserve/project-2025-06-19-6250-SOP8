@@ -89,6 +89,8 @@ typedef union
 }bit_flag; 	
 volatile bit_flag flag1;
 
+#define flag_is_enable_light_trigger_mode flag1.bits.bit0 // 是否使能TRIGGER对应的模式
+
 //#define FLAG_TIMER1_100ms	flag1.bits.bit0
 
 #endif

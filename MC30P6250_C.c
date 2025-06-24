@@ -8,7 +8,7 @@
 ******************************************************************************/
 
 #include "user.h"
- 
+
 #define OSCILLATION_PIN1 (P11D)
 #define OSCILLATION_PIN2 (P14D)
 #define OSCILLATION_PIN3 (P15D)
@@ -78,6 +78,15 @@ enum
     MODE_MAX,
 };
 
+// 定义灯光的模式
+enum
+{
+    LIGHT_MODE_NONE = 0,
+    LIGHT_MODE_ALWAYS_ON, // 常亮
+    LIGHT_MODE_FLASH,     // 爆闪，200ms亮，200ms灭
+    LIGHT_MODE_TRIGGER,   // 震动闪灯，每次闪烁3s(200ms亮，200ms灭)
+};
+
 volatile uint8_t key_sleep_count;
 
 volatile uint8_t key_filtter;
@@ -86,13 +95,13 @@ volatile uint8_t key_level;
 volatile uint8_t key_press_10ms_count;
 
 volatile uint8_t light_mode;
-volatile uint8_t light_mode_flash_dir;
-volatile uint16_t light_mode_flash_count;
-volatile uint8_t light_mode_fade_dir;
-volatile uint8_t light_mode_fade_count;
-volatile uint8_t pwm_switch_count;
-volatile uint8_t pwm_switch;
-volatile uint8_t pwm_duty;
+// volatile uint8_t light_mode_flash_dir;
+// volatile uint16_t light_mode_flash_count;
+// volatile uint8_t light_mode_fade_dir;
+// volatile uint8_t light_mode_fade_count;
+// volatile uint8_t pwm_switch_count;
+// volatile uint8_t pwm_switch;
+// volatile uint8_t pwm_duty;
 volatile uint8_t pwm2_duty;
 volatile uint8_t rt_trigger;
 
@@ -115,6 +124,24 @@ void delay_10ms(void)
     volatile uint16_t _ms = 4443;
     while (_ms--)
         ;
+}
+
+// 前提条件：FCPU = FHOSC / 2
+void delay_ms(u16 xms)
+{
+    while (xms)
+    {
+        u16 i = 535;
+        while (i--)
+        {
+            Nop();
+        }
+        xms--; // 把 --操作放在while()判断条件外面，更节省空间
+
+        __asm;
+        clrwdt; // 喂狗
+        __endasm;
+    }
 }
 
 /************************************************
@@ -179,6 +206,7 @@ void TIMER0_INT_Init(void)
 ;  *    @IN_Parameter        :
 ;  *    @Return parameter    :
 ;  ***********************************************/
+#if 0
 void TIMER1_PWM_Init(void)
 {
     PWM1CR0 = 0x00; // 允许PWM1A端口输出波形，T1时钟不倍频
@@ -191,6 +219,7 @@ void TIMER1_PWM_Init(void)
     // T1DATB = 0;
     T1CR = 0xC0; // 使能定时器 Fcpu 1分频
 }
+#endif
 
 /************************************************
 ;  *    @Function Name       : Sys_Init
@@ -205,7 +234,7 @@ void Sys_Init(void)
     params_init();
     IO_Init();
     TIMER0_INT_Init();
-    TIMER1_PWM_Init();
+    // TIMER1_PWM_Init();
 
     delay_1ms();
     GIE = 1;
@@ -225,8 +254,10 @@ void params_init(void)
 
     sleep_enalbe = 1;
     light_mode = MODE_FADE; // 上电默认模式
+    // light_mode = MODE_ALWAYS_ON; // 上电默认常亮
 }
 
+#if 1
 void key_scan(void)
 {
     key_scan_count++;
@@ -257,6 +288,7 @@ void key_scan(void)
         {
             if (key_press_10ms_count > 20 && key_press_10ms_count < 200)
             { // 短按切换模式
+#if 0
                 light_mode++;
                 if (light_mode >= MODE_MAX)
                     light_mode = MODE_ALWAYS_ON;
@@ -267,12 +299,40 @@ void key_scan(void)
                     light_mode_fade_dir = 0;
                     light_mode_fade_count = 0;
                 }
+#endif
+
+                light_mode++;
+                if (light_mode > LIGHT_MODE_TRIGGER)
+                {
+                    light_mode = LIGHT_MODE_ALWAYS_ON;
+                }
             }
             key_press_10ms_count = 0;
         }
     }
 }
 
+void light_mode_handle(void)
+{
+    if (LIGHT_MODE_ALWAYS_ON == light_mode)
+    {
+        P12D = 0;
+    }
+    else if (LIGHT_MODE_FLASH == light_mode)
+    {
+        // P12D = 1;
+    }
+    else if (LIGHT_MODE_TRIGGER == light_mode)
+    {
+        // P12D = 0;
+        // delay_ms(200);
+        // P12D = 1;
+        // delay_ms(200);
+    }
+}
+#endif
+
+#if 0
 void light_deal_event(void)
 {
     if (pwm_switch == 0)
@@ -289,7 +349,8 @@ void light_deal_event(void)
 
     if (light_mode == MODE_ALWAYS_ON)
     {
-        pwm_duty = 64;
+        // pwm_duty = 64;
+        pwm_duty = 9; // 测试硬件用，7~8%占空比
     }
     else if (light_mode == MODE_FLASH)
     {
@@ -559,13 +620,16 @@ void light_deal_event(void)
     timer1_count = 0;
     T1IE = 1; // 开启Timer1计数中断，配合计数28个PWM周期后自动将PWM占空比设置为0
 }
+#endif
 
+#if 1
 #if RT_DETECT_ENABLE
 void rt_detect_event(void)
 {
+
     static volatile uint8_t Statue = 0;
     static volatile uint8_t pluse_count = 0;
-    static volatile uint16_t pluse_time = 0;
+    static volatile u8 pluse_time = 0;
     static volatile uint16_t switch_mode_count = 0;
 
     if (switch_mode_count > 0)
@@ -629,6 +693,9 @@ void rt_detect_event(void)
 
             // 触发
             rt_trigger = 2;
+
+            light_mode = LIGHT_MODE_TRIGGER;
+            flag_is_enable_light_trigger_mode = 1;
         }
     }
     else
@@ -637,6 +704,8 @@ void rt_detect_event(void)
             sleep_enalbe = 1;
     }
 }
+#endif
+
 #endif
 
 void main(void)
@@ -654,7 +723,8 @@ void main(void)
         if (timer0_flag)
         {
             timer0_flag = 0;
-            light_deal_event();
+            // light_deal_event();
+            light_mode_handle();
             key_scan();
 #if RT_DETECT_ENABLE
             rt_detect_event();
@@ -669,6 +739,8 @@ void main(void)
             delay_1ms();
             T1EN = 0;
             GIE = 0;
+
+            P12D = 1; // 关闭灯光
 
             OSCILLATION_PIN1 = 0;
             OSCILLATION_PIN2 = 0;
@@ -748,6 +820,7 @@ void main(void)
             }
 
             // light_mode = MODE_FADE;    // 开机默认模式
+            light_mode = MODE_ALWAYS_ON; // 开机默认模式
             sleep_enalbe = 0;
 
 #if RT_DETECT_ENABLE
@@ -782,9 +855,56 @@ void int_isr(void) __interrupt
     {
         T0IF = 0;
         // T0CNT = 161; // (256 - 95);
-        T0CNT = 255 - 62; // 递增计数器，需要手动装载
+        T0CNT = 255 - 62; // 递增计数器，需要手动装载 (约500us)
 
         // P12D = ~P12D; // 测试中断时间
+
+        if (LIGHT_MODE_FLASH == light_mode)
+        {
+            static u16 cnt = 0;
+            cnt++;
+            // if (cnt < 200)
+            if (cnt < 400)
+            {
+                P12D = 0;
+            }
+            // else if (cnt < 400)
+            else if (cnt < 800)
+            {
+                P12D = 1;
+            }
+            else
+            {
+                cnt = 0;
+            }
+        }
+        else if (flag_is_enable_light_trigger_mode)
+        {
+            static u16 cnt = 0;
+            static u8 loop_cnt = 0;
+
+            if (cnt < 400)
+            {
+                P12D = 0;
+            }
+            // else if (cnt < 400)
+            else if (cnt < 800)
+            {
+                P12D = 1;
+            }
+            else
+            {
+                cnt = 0;
+                loop_cnt++;
+            }
+
+            if (loop_cnt >= 8)
+            {
+                cnt = 0;
+                loop_cnt = 0;
+                flag_is_enable_light_trigger_mode = 0;
+            }
+        }
 
         timer0_flag = 1;
     }
@@ -793,12 +913,12 @@ void int_isr(void) __interrupt
     {
         T1IF = 0;
 
-        timer1_count++;
-        if (timer1_count > 28)
-        {
-            T1IE = 0;
-            T1DATA = 0;
-        }
+        // timer1_count++;
+        // if (timer1_count > 28)
+        // {
+        //     T1IE = 0;
+        //     T1DATA = 0;
+        // }
     }
 
     if ((CMPIE) && (CMPIF))

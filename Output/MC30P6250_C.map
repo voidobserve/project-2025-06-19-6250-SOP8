@@ -1,12 +1,12 @@
 gplink-2.2.37 (Jan 22 2024)
-Map File - Created 2025-6-20  17:07:58
+Map File - Created 2025-6-24  18:00:52
  
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
                 ---------  ---------  ---------  ---------  ---------
                   STARTUP       code   00000000    program   0x000002
-              c_interrupt       code   0x000008    program   0x000044
-         code_MC30P6250_C       code   0x00002a    program   0x00066e
+              c_interrupt       code   0x000008    program   0x0000b4
+         code_MC30P6250_C       code   0x000062    program   0x0002d6
        UD_abs_mc30p6250_0      udata   00000000       data   0x000001
        UD_abs_mc30p6250_1      udata   0x000001       data   0x000001
        UD_abs_mc30p6250_2      udata   0x000002       data   0x000001
@@ -24,28 +24,21 @@ Map File - Created 2025-6-20  17:07:58
        UD_abs_mc30p6250_e      udata   0x00000e       data   0x000001
        UD_abs_mc30p6250_f      udata   0x00000f       data   0x000001
                 sharebank      udata   0x000010       data   0x000007
-        UDL_MC30P6250_C_0      udata   0x000017       data   0x00000c
-        UD_MC30P6250_C_10      udata   0x000023       data   0x000002
-         UD_MC30P6250_C_0      udata   0x000025       data   0x000001
-         UD_MC30P6250_C_1      udata   0x000026       data   0x000001
-         UD_MC30P6250_C_2      udata   0x000027       data   0x000001
-         UD_MC30P6250_C_3      udata   0x000028       data   0x000001
-         UD_MC30P6250_C_4      udata   0x000029       data   0x000001
-         UD_MC30P6250_C_5      udata   0x00002a       data   0x000001
-         UD_MC30P6250_C_6      udata   0x00002b       data   0x000001
-         UD_MC30P6250_C_7      udata   0x00002c       data   0x000001
-         UD_MC30P6250_C_8      udata   0x00002d       data   0x000001
-         UD_MC30P6250_C_9      udata   0x00002e       data   0x000001
-        UD_MC30P6250_C_11      udata   0x00002f       data   0x000001
-        UD_MC30P6250_C_12      udata   0x000030       data   0x000001
-        UD_MC30P6250_C_13      udata   0x000031       data   0x000001
-        UD_MC30P6250_C_14      udata   0x000032       data   0x000001
-        UD_MC30P6250_C_15      udata   0x000033       data   0x000001
-        UD_MC30P6250_C_16      udata   0x000034       data   0x000001
-        UD_MC30P6250_C_17      udata   0x000035       data   0x000001
-        UD_MC30P6250_C_18      udata   0x000036       data   0x000001
-        UD_MC30P6250_C_19      udata   0x000037       data   0x000001
-        UD_MC30P6250_C_20      udata   0x000038       data   0x000001
+        UDL_MC30P6250_C_0      udata   0x000017       data   0x000016
+         UD_MC30P6250_C_0      udata   0x00002d       data   0x000001
+         UD_MC30P6250_C_1      udata   0x00002e       data   0x000001
+         UD_MC30P6250_C_2      udata   0x00002f       data   0x000001
+         UD_MC30P6250_C_3      udata   0x000030       data   0x000001
+         UD_MC30P6250_C_4      udata   0x000031       data   0x000001
+         UD_MC30P6250_C_5      udata   0x000032       data   0x000001
+         UD_MC30P6250_C_6      udata   0x000033       data   0x000001
+         UD_MC30P6250_C_7      udata   0x000034       data   0x000001
+         UD_MC30P6250_C_8      udata   0x000035       data   0x000001
+         UD_MC30P6250_C_9      udata   0x000036       data   0x000001
+        UD_MC30P6250_C_10      udata   0x000037       data   0x000001
+        UD_MC30P6250_C_11      udata   0x000038       data   0x000001
+        UD_MC30P6250_C_12      udata   0x000039       data   0x000001
+        UD_MC30P6250_C_13      udata   0x00003a       data   0x000001
       UD_abs_mc30p6250_41      udata   0x000041       data   0x000001
       UD_abs_mc30p6250_42      udata   0x000042       data   0x000001
       UD_abs_mc30p6250_46      udata   0x000046       data   0x000001
@@ -66,10 +59,10 @@ Map File - Created 2025-6-20  17:07:58
                                Start         End
                            ---------   ---------
                             00000000    00000000
-                            0x000008    0x000029
-                            0x00002a    0x000360
+                            0x000008    0x000061
+                            0x000062    0x0001cc
  
-                            858 program addresses used
+                            454 program addresses used
  
                               Symbols
                      Name    Address   Location    Storage File
@@ -81,137 +74,103 @@ Map File - Created 2025-6-20  17:07:58
                     STK02   0x000014       data     extern MC30P6250_C.asm
                     STK01   0x000015       data     extern MC30P6250_C.asm
                     STK00   0x000016       data     extern MC30P6250_C.asm
-                    _abuf   0x000025       data     extern MC30P6250_C.asm
-               _statusbuf   0x000026       data     extern MC30P6250_C.asm
-                   _flag1   0x000027       data     extern MC30P6250_C.asm
-         _key_sleep_count   0x000028       data     extern MC30P6250_C.asm
-             _key_filtter   0x000029       data     extern MC30P6250_C.asm
-          _key_scan_count   0x00002a       data     extern MC30P6250_C.asm
-               _key_level   0x00002b       data     extern MC30P6250_C.asm
-    _key_press_10ms_count   0x00002c       data     extern MC30P6250_C.asm
-              _light_mode   0x00002d       data     extern MC30P6250_C.asm
-    _light_mode_flash_dir   0x00002e       data     extern MC30P6250_C.asm
-  _light_mode_flash_count   0x000023       data     extern MC30P6250_C.asm
-     _light_mode_fade_dir   0x00002f       data     extern MC30P6250_C.asm
-   _light_mode_fade_count   0x000030       data     extern MC30P6250_C.asm
-        _pwm_switch_count   0x000031       data     extern MC30P6250_C.asm
-              _pwm_switch   0x000032       data     extern MC30P6250_C.asm
-                _pwm_duty   0x000033       data     extern MC30P6250_C.asm
-               _pwm2_duty   0x000034       data     extern MC30P6250_C.asm
-              _rt_trigger   0x000035       data     extern MC30P6250_C.asm
-            _sleep_enalbe   0x000036       data     extern MC30P6250_C.asm
-             _timer0_flag   0x000037       data     extern MC30P6250_C.asm
-            _timer1_count   0x000038       data     extern MC30P6250_C.asm
-                  r0x101D   0x000017       data     static MC30P6250_C.asm
-                  r0x101E   0x000018       data     static MC30P6250_C.asm
-   _delay_1ms__ms_65536_8   0x000019       data     static MC30P6250_C.asm
- _delay_10ms__ms_65536_10   0x00001b       data     static MC30P6250_C.asm
-_rt_detect_event_switch_mode_count_65536_87   0x00001d       data     static MC30P6250_C.asm
-_rt_detect_event_Statue_65536_87   0x00001f       data     static MC30P6250_C.asm
-_rt_detect_event_pluse_count_65536_87   0x000020       data     static MC30P6250_C.asm
-_rt_detect_event_pluse_time_65536_87   0x000021       data     static MC30P6250_C.asm
+                    _abuf   0x00002d       data     extern MC30P6250_C.asm
+               _statusbuf   0x00002e       data     extern MC30P6250_C.asm
+                   _flag1   0x00002f       data     extern MC30P6250_C.asm
+         _key_sleep_count   0x000030       data     extern MC30P6250_C.asm
+             _key_filtter   0x000031       data     extern MC30P6250_C.asm
+          _key_scan_count   0x000032       data     extern MC30P6250_C.asm
+               _key_level   0x000033       data     extern MC30P6250_C.asm
+    _key_press_10ms_count   0x000034       data     extern MC30P6250_C.asm
+              _light_mode   0x000035       data     extern MC30P6250_C.asm
+               _pwm2_duty   0x000036       data     extern MC30P6250_C.asm
+              _rt_trigger   0x000037       data     extern MC30P6250_C.asm
+            _sleep_enalbe   0x000038       data     extern MC30P6250_C.asm
+             _timer0_flag   0x000039       data     extern MC30P6250_C.asm
+            _timer1_count   0x00003a       data     extern MC30P6250_C.asm
+                  r0x1018   0x000017       data     static MC30P6250_C.asm
+                  r0x1019   0x000018       data     static MC30P6250_C.asm
+                  r0x101B   0x000019       data     static MC30P6250_C.asm
+                  r0x101A   0x00001a       data     static MC30P6250_C.asm
+                  r0x101C   0x00001b       data     static MC30P6250_C.asm
+                  r0x101D   0x00001c       data     static MC30P6250_C.asm
+                  r0x101E   0x00001d       data     static MC30P6250_C.asm
+                  r0x101F   0x00001e       data     static MC30P6250_C.asm
+   _delay_1ms__ms_65536_8   0x00001f       data     static MC30P6250_C.asm
+ _delay_10ms__ms_65536_10   0x000021       data     static MC30P6250_C.asm
+_rt_detect_event_switch_mode_count_65536_41   0x000023       data     static MC30P6250_C.asm
+_rt_detect_event_Statue_65536_41   0x000025       data     static MC30P6250_C.asm
+_rt_detect_event_pluse_count_65536_41   0x000026       data     static MC30P6250_C.asm
+_rt_detect_event_pluse_time_65536_41   0x000027       data     static MC30P6250_C.asm
+   _int_isr_cnt_196608_77   0x000028       data     static MC30P6250_C.asm
+   _int_isr_cnt_196608_81   0x00002a       data     static MC30P6250_C.asm
+_int_isr_loop_cnt_196608_81   0x00002c       data     static MC30P6250_C.asm
          __sdcc_interrupt   0x000008    program     static MC30P6250_C.asm
                  _int_isr   0x000008    program     extern MC30P6250_C.asm
-               _00452_DS_   0x000014    program     static MC30P6250_C.asm
-               _00457_DS_   0x000020    program     static MC30P6250_C.asm
-               _00460_DS_   0x000025    program     static MC30P6250_C.asm
-         END_OF_INTERRUPT   0x000029    program     static MC30P6250_C.asm
-                    _main   0x00002a    program     extern MC30P6250_C.asm
-               _00446_DS_   0x00002b    program     static MC30P6250_C.asm
-               _00416_DS_   0x000033    program     static MC30P6250_C.asm
-               _00423_DS_   0x000041    program     static MC30P6250_C.asm
-               _00420_DS_   0x00004a    program     static MC30P6250_C.asm
-               _00424_DS_   0x00004c    program     static MC30P6250_C.asm
-               _00438_DS_   0x00004e    program     static MC30P6250_C.asm
-               _00426_DS_   0x00005c    program     static MC30P6250_C.asm
-               _00435_DS_   0x00005e    program     static MC30P6250_C.asm
-               _00439_DS_   0x000075    program     static MC30P6250_C.asm
-         _rt_detect_event   0x00007f    program     extern MC30P6250_C.asm
-               _00334_DS_   0x000093    program     static MC30P6250_C.asm
-               _00339_DS_   0x000098    program     static MC30P6250_C.asm
-               _00343_DS_   0x000099    program     static MC30P6250_C.asm
-               _00344_DS_   0x00009d    program     static MC30P6250_C.asm
-               _00408_DS_   0x0000a4    program     static MC30P6250_C.asm
-               _00409_DS_   0x0000a9    program     static MC30P6250_C.asm
-               _00345_DS_   0x0000aa    program     static MC30P6250_C.asm
-               _00348_DS_   0x0000af    program     static MC30P6250_C.asm
-               _00352_DS_   0x0000b6    program     static MC30P6250_C.asm
-               _00410_DS_   0x0000bf    program     static MC30P6250_C.asm
-               _00354_DS_   0x0000c4    program     static MC30P6250_C.asm
-               _00360_DS_   0x0000ce    program     static MC30P6250_C.asm
-               _00362_DS_   0x0000d2    program     static MC30P6250_C.asm
-        _light_deal_event   0x0000d3    program     extern MC30P6250_C.asm
-               _00166_DS_   0x0000e2    program     static MC30P6250_C.asm
-               _00167_DS_   0x0000e3    program     static MC30P6250_C.asm
-               _00169_DS_   0x0000f2    program     static MC30P6250_C.asm
-               _00170_DS_   0x0000f3    program     static MC30P6250_C.asm
-               _00322_DS_   0x000108    program     static MC30P6250_C.asm
-               _00172_DS_   0x000120    program     static MC30P6250_C.asm
-               _00174_DS_   0x000126    program     static MC30P6250_C.asm
-               _00319_DS_   0x000129    program     static MC30P6250_C.asm
-               _00177_DS_   0x00013c    program     static MC30P6250_C.asm
-               _00187_DS_   0x000143    program     static MC30P6250_C.asm
-               _00181_DS_   0x00014c    program     static MC30P6250_C.asm
-               _00316_DS_   0x000152    program     static MC30P6250_C.asm
-               _00205_DS_   0x000162    program     static MC30P6250_C.asm
-               _00192_DS_   0x000170    program     static MC30P6250_C.asm
-               _00200_DS_   0x000174    program     static MC30P6250_C.asm
-               _00195_DS_   0x00017e    program     static MC30P6250_C.asm
-               _00313_DS_   0x000182    program     static MC30P6250_C.asm
-               _00209_DS_   0x00018d    program     static MC30P6250_C.asm
-               _00310_DS_   0x00018f    program     static MC30P6250_C.asm
-               _00212_DS_   0x000199    program     static MC30P6250_C.asm
-               _00307_DS_   0x00019c    program     static MC30P6250_C.asm
-               _00215_DS_   0x0001b4    program     static MC30P6250_C.asm
-               _00216_DS_   0x0001bc    program     static MC30P6250_C.asm
-               _00217_DS_   0x0001be    program     static MC30P6250_C.asm
-               _00304_DS_   0x0001c1    program     static MC30P6250_C.asm
-               _00221_DS_   0x0001d9    program     static MC30P6250_C.asm
-               _00222_DS_   0x0001e1    program     static MC30P6250_C.asm
-               _00223_DS_   0x0001e3    program     static MC30P6250_C.asm
-               _00301_DS_   0x0001e6    program     static MC30P6250_C.asm
-               _00227_DS_   0x0001fa    program     static MC30P6250_C.asm
-               _00229_DS_   0x000204    program     static MC30P6250_C.asm
-               _00235_DS_   0x000207    program     static MC30P6250_C.asm
-               _00232_DS_   0x00020e    program     static MC30P6250_C.asm
-               _00298_DS_   0x000210    program     static MC30P6250_C.asm
-               _00238_DS_   0x000222    program     static MC30P6250_C.asm
-               _00240_DS_   0x00022b    program     static MC30P6250_C.asm
-               _00250_DS_   0x000232    program     static MC30P6250_C.asm
-               _00244_DS_   0x00023b    program     static MC30P6250_C.asm
-               _00295_DS_   0x000241    program     static MC30P6250_C.asm
-               _00255_DS_   0x000253    program     static MC30P6250_C.asm
-               _00257_DS_   0x00025c    program     static MC30P6250_C.asm
-               _00267_DS_   0x000263    program     static MC30P6250_C.asm
-               _00261_DS_   0x00026c    program     static MC30P6250_C.asm
-               _00292_DS_   0x000272    program     static MC30P6250_C.asm
-               _00272_DS_   0x00028e    program     static MC30P6250_C.asm
-               _00282_DS_   0x000295    program     static MC30P6250_C.asm
-               _00276_DS_   0x00029e    program     static MC30P6250_C.asm
-               _00287_DS_   0x0002a4    program     static MC30P6250_C.asm
-               _00323_DS_   0x0002a9    program     static MC30P6250_C.asm
-               _00325_DS_   0x0002b6    program     static MC30P6250_C.asm
-               _00326_DS_   0x0002ba    program     static MC30P6250_C.asm
-                _key_scan   0x0002bb    program     extern MC30P6250_C.asm
-               _00140_DS_   0x0002c9    program     static MC30P6250_C.asm
-               _00144_DS_   0x0002d2    program     static MC30P6250_C.asm
-               _00145_DS_   0x0002d7    program     static MC30P6250_C.asm
-               _00147_DS_   0x0002e0    program     static MC30P6250_C.asm
-               _00156_DS_   0x0002e7    program     static MC30P6250_C.asm
-               _00151_DS_   0x0002f6    program     static MC30P6250_C.asm
-               _00153_DS_   0x0002fb    program     static MC30P6250_C.asm
-               _00160_DS_   0x0002fc    program     static MC30P6250_C.asm
-             _params_init   0x0002fd    program     extern MC30P6250_C.asm
-                _Sys_Init   0x000308    program     extern MC30P6250_C.asm
-         _TIMER1_PWM_Init   0x000311    program     extern MC30P6250_C.asm
-         _TIMER0_INT_Init   0x000318    program     extern MC30P6250_C.asm
-                 _IO_Init   0x00031e    program     extern MC30P6250_C.asm
-                   _C_RAM   0x00032b    program     extern MC30P6250_C.asm
-   _code_MC30P6250_C_0308   0x000332    program     static MC30P6250_C.asm
-              _delay_10ms   0x000335    program     extern MC30P6250_C.asm
-               _00110_DS_   0x000339    program     static MC30P6250_C.asm
-               _delay_1ms   0x00034b    program     extern MC30P6250_C.asm
-               _00105_DS_   0x00034f    program     static MC30P6250_C.asm
+               _00394_DS_   0x00001f    program     static MC30P6250_C.asm
+               _00316_DS_   0x000023    program     static MC30P6250_C.asm
+               _00395_DS_   0x000029    program     static MC30P6250_C.asm
+               _00313_DS_   0x00002d    program     static MC30P6250_C.asm
+               _00329_DS_   0x000030    program     static MC30P6250_C.asm
+               _00396_DS_   0x000038    program     static MC30P6250_C.asm
+               _00322_DS_   0x00003c    program     static MC30P6250_C.asm
+               _00397_DS_   0x000042    program     static MC30P6250_C.asm
+               _00319_DS_   0x000046    program     static MC30P6250_C.asm
+               _00323_DS_   0x000049    program     static MC30P6250_C.asm
+               _00330_DS_   0x000051    program     static MC30P6250_C.asm
+               _00332_DS_   0x000053    program     static MC30P6250_C.asm
+               _00335_DS_   0x000058    program     static MC30P6250_C.asm
+               _00338_DS_   0x00005d    program     static MC30P6250_C.asm
+         END_OF_INTERRUPT   0x000061    program     static MC30P6250_C.asm
+                    _main   0x000062    program     extern MC30P6250_C.asm
+               _00307_DS_   0x000063    program     static MC30P6250_C.asm
+               _00277_DS_   0x00006b    program     static MC30P6250_C.asm
+               _00284_DS_   0x00007a    program     static MC30P6250_C.asm
+               _00281_DS_   0x000083    program     static MC30P6250_C.asm
+               _00285_DS_   0x000085    program     static MC30P6250_C.asm
+               _00299_DS_   0x000087    program     static MC30P6250_C.asm
+               _00287_DS_   0x000095    program     static MC30P6250_C.asm
+               _00296_DS_   0x000097    program     static MC30P6250_C.asm
+               _00300_DS_   0x0000ae    program     static MC30P6250_C.asm
+         _rt_detect_event   0x0000ba    program     extern MC30P6250_C.asm
+               _00196_DS_   0x0000ce    program     static MC30P6250_C.asm
+               _00201_DS_   0x0000d3    program     static MC30P6250_C.asm
+               _00205_DS_   0x0000d4    program     static MC30P6250_C.asm
+               _00206_DS_   0x0000d8    program     static MC30P6250_C.asm
+               _00270_DS_   0x0000df    program     static MC30P6250_C.asm
+               _00271_DS_   0x0000e4    program     static MC30P6250_C.asm
+               _00207_DS_   0x0000e5    program     static MC30P6250_C.asm
+               _00210_DS_   0x0000ea    program     static MC30P6250_C.asm
+               _00214_DS_   0x0000f0    program     static MC30P6250_C.asm
+               _00216_DS_   0x0000f7    program     static MC30P6250_C.asm
+               _00222_DS_   0x000103    program     static MC30P6250_C.asm
+               _00224_DS_   0x000107    program     static MC30P6250_C.asm
+       _light_mode_handle   0x000108    program     extern MC30P6250_C.asm
+               _00176_DS_   0x00010e    program     static MC30P6250_C.asm
+               _00178_DS_   0x000113    program     static MC30P6250_C.asm
+                _key_scan   0x000114    program     extern MC30P6250_C.asm
+               _00147_DS_   0x000122    program     static MC30P6250_C.asm
+               _00151_DS_   0x00012b    program     static MC30P6250_C.asm
+               _00152_DS_   0x000130    program     static MC30P6250_C.asm
+               _00154_DS_   0x000139    program     static MC30P6250_C.asm
+               _00163_DS_   0x000140    program     static MC30P6250_C.asm
+               _00160_DS_   0x00014f    program     static MC30P6250_C.asm
+               _00167_DS_   0x000150    program     static MC30P6250_C.asm
+             _params_init   0x000151    program     extern MC30P6250_C.asm
+                _Sys_Init   0x00015c    program     extern MC30P6250_C.asm
+         _TIMER0_INT_Init   0x000164    program     extern MC30P6250_C.asm
+                 _IO_Init   0x00016a    program     extern MC30P6250_C.asm
+                   _C_RAM   0x000177    program     extern MC30P6250_C.asm
+   _code_MC30P6250_C_011C   0x00017e    program     static MC30P6250_C.asm
+                _delay_ms   0x000181    program     extern MC30P6250_C.asm
+               _00118_DS_   0x000184    program     static MC30P6250_C.asm
+               _00115_DS_   0x00018c    program     static MC30P6250_C.asm
+               _00117_DS_   0x00019a    program     static MC30P6250_C.asm
+               _00121_DS_   0x0001a0    program     static MC30P6250_C.asm
+              _delay_10ms   0x0001a1    program     extern MC30P6250_C.asm
+               _00110_DS_   0x0001a5    program     static MC30P6250_C.asm
+               _delay_1ms   0x0001b7    program     extern MC30P6250_C.asm
+               _00105_DS_   0x0001bb    program     static MC30P6250_C.asm
                 _INDFbits   00000000       data     extern mc30p6250.asm
                     _INDF   00000000       data     extern mc30p6250.asm
                _T0CNTbits   0x000001       data     extern mc30p6250.asm
