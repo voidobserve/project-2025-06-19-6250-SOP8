@@ -54,8 +54,16 @@
         P10PU = 1;      \
         P10PD = 0;      \
     } while (0) // 检测充电
+
+#define RT_DETECT_UNINIT()        \
+    do                            \
+    {                             \
+        P10PU = 1; /* 关闭上拉 */ \
+        P10PD = 1; /* 关闭下拉 */ \
+    } while (0) // 检测充电
+
 #define IS_RT_DETECT() (P10PD)
-#define RT_DETECT_UNINIT() RT_DETECT_OFF() // 进入休眠前调用
+// #define RT_DETECT_UNINIT() RT_DETECT_OFF() // 进入休眠前调用
 #define RT_CHARGE_DET_PIN (P10D)
 #endif
 
@@ -84,7 +92,8 @@ enum
     LIGHT_MODE_NONE = 0,
     LIGHT_MODE_ALWAYS_ON, // 常亮
     LIGHT_MODE_FLASH,     // 爆闪，200ms亮，200ms灭
-    LIGHT_MODE_TRIGGER,   // 震动闪灯，每次闪烁3s(200ms亮，200ms灭)
+    LIGHT_MODE_FLASH_2,   // 爆闪，100ms亮，100ms灭
+    LIGHT_MODE_TRIGGER,   // 震动检测模式，
 };
 
 volatile uint8_t key_sleep_count;
@@ -102,29 +111,29 @@ volatile uint8_t light_mode;
 // volatile uint8_t pwm_switch_count;
 // volatile uint8_t pwm_switch;
 // volatile uint8_t pwm_duty;
-volatile uint8_t pwm2_duty;
-volatile uint8_t rt_trigger;
+// volatile uint8_t pwm2_duty;
+// volatile uint8_t rt_trigger;
 
 volatile uint8_t sleep_enalbe;
 
 volatile uint8_t timer0_flag;
-volatile uint8_t timer1_count;
+// volatile uint8_t timer1_count;
 
 void params_init(void);
 
-void delay_1ms(void)
-{
-    volatile uint16_t _ms = 443;
-    while (_ms--)
-        ;
-}
+// void delay_1ms(void)
+// {
+//     volatile uint16_t _ms = 443;
+//     while (_ms--)
+//         ;
+// }
 
-void delay_10ms(void)
-{
-    volatile uint16_t _ms = 4443;
-    while (_ms--)
-        ;
-}
+// void delay_10ms(void)
+// {
+//     volatile uint16_t _ms = 4443;
+//     while (_ms--)
+//         ;
+// }
 
 // 前提条件：FCPU = FHOSC / 2
 void delay_ms(u16 xms)
@@ -173,11 +182,12 @@ void C_RAM(void)
 ;  ***********************************************/
 void IO_Init(void)
 {
-    P1 = 0x00;    // 1:input 0:output
-    DDR1 = 0x00;  // 1:input 0:output
-    PUCON = 0xff; // 0:Effective 1:invalid
-    PDCON = 0xff; // 0:Effective 1:invalid
-    ODCON = 0x00; // 0:推挽输出  1:开漏输出
+    // P1 = 0x00;    // 1:input 0:output
+    P1 = 0x01 << 2; // P12默认输出高电平，不点亮灯光
+    DDR1 = 0x00;    // 1:input 0:output
+    PUCON = 0xff;   // 0:Effective 1:invalid
+    PDCON = 0xff;   // 0:Effective 1:invalid
+    ODCON = 0x00;   // 0:推挽输出  1:开漏输出
 
     KEY_DETECT_INIT();
 #if RT_DETECT_ENABLE
@@ -236,7 +246,8 @@ void Sys_Init(void)
     TIMER0_INT_Init();
     // TIMER1_PWM_Init();
 
-    delay_1ms();
+    // delay_1ms();
+    delay_ms(1);
     GIE = 1;
 }
 //=================================================================================
@@ -253,7 +264,9 @@ void params_init(void)
     key_press_10ms_count = 0;
 
     sleep_enalbe = 1;
-    light_mode = MODE_FADE; // 上电默认模式
+    // sleep_enalbe = 0;
+    // light_mode = MODE_FADE; // 上电默认模式
+    light_mode = LIGHT_MODE_NONE; // 上电默认模式
     // light_mode = MODE_ALWAYS_ON; // 上电默认常亮
 }
 
@@ -278,6 +291,7 @@ void key_scan(void)
         if (key_level == 0)
         {
             if (key_press_10ms_count <= 200)
+                // if (key_press_10ms_count < 200)
                 key_press_10ms_count++;
             if (key_press_10ms_count == 200)
             { // 长按关机
@@ -302,6 +316,7 @@ void key_scan(void)
 #endif
 
                 light_mode++;
+                flag_is_enable_light_trigger_mode = 1;
                 if (light_mode > LIGHT_MODE_TRIGGER)
                 {
                     light_mode = LIGHT_MODE_ALWAYS_ON;
@@ -656,7 +671,16 @@ void rt_detect_event(void)
         return;
     }
 
+    // 加入这一块语句会
+    // if (0 == flag_is_enable_light_trigger_mode)
+    // {
+    //     // 不是震动检测模式或震动检测未使能，清0相关变量
+    //     pluse_count = 0;
+    //     pluse_time = 0;
+    // }
+
     if (IS_RT_DETECT())
+    // if (IS_RT_DETECT() && 0 == flag_is_enable_light_trigger_mode) /* 加上 flag_is_enable_light_trigger_mode 判断会导致进入 sleep_enalbe = 1，长按按键开机后马上进入关机 */
     { // 震动检测
         switch (Statue)
         {
@@ -677,7 +701,7 @@ void rt_detect_event(void)
             else
             {
                 pluse_time++;
-                if (pluse_time >= 200)
+                if (pluse_time >= 150)
                 {
                     pluse_time = 0;
                     pluse_count = 0;
@@ -686,20 +710,21 @@ void rt_detect_event(void)
             break;
         }
 
-        if (pluse_count >= 3) // lmd_buf[sys_ctl.lmd_num-1])//灵敏度调节参数,越少越敏感
+        if (pluse_count >= 5) // lmd_buf[sys_ctl.lmd_num-1])//灵敏度调节参数,越少越敏感
         {
             pluse_count = 0;
             pluse_time = 0;
 
             // 触发
-            rt_trigger = 2;
+            // rt_trigger = 2;
 
-            light_mode = LIGHT_MODE_TRIGGER;
+            // light_mode = LIGHT_MODE_TRIGGER;
             flag_is_enable_light_trigger_mode = 1;
         }
     }
     else
-    { // 充电检测
+    {
+        // 充电检测
         if (RT_CHARGE_DET_PIN)
             sleep_enalbe = 1;
     }
@@ -711,6 +736,9 @@ void rt_detect_event(void)
 void main(void)
 {
     Sys_Init();
+
+    // light_mode = LIGHT_MODE_TRIGGER;
+    // flag_is_enable_light_trigger_mode = 1;
 
     while (1)
     {
@@ -734,10 +762,10 @@ void main(void)
         if (sleep_enalbe)
         {
             // sleep
-            T1IE = 0;
-            T1DATA = 0;
-            delay_1ms();
-            T1EN = 0;
+            // T1IE = 0;
+            // T1DATA = 0;
+            // delay_1ms();
+            // T1EN = 0;
             GIE = 0;
 
             P12D = 1; // 关闭灯光
@@ -747,7 +775,7 @@ void main(void)
 #ifdef OSCILLATION_PIN3
             OSCILLATION_PIN3 = 0;
 #endif
-            PWM_CONTROLLER1 = 0;
+            // PWM_CONTROLLER1 = 0; //
 
             key_sleep_count = 0;
             while (1)
@@ -756,7 +784,8 @@ void main(void)
                 // clrwdt;
                 // __endasm;
 
-                delay_1ms();
+                // delay_1ms();
+                delay_ms(1);
                 if (KEY_DET_PIN)
                 {
                     key_sleep_count++;
@@ -781,7 +810,8 @@ void main(void)
                 if (KEY_DET_PIN == 0)
                 {
                     // 长按两秒后开机并亮灯
-                    delay_10ms();
+                    // delay_10ms();
+                    delay_ms(10);
                     if (key_sleep_count >= 200)
                     {
                         KBIF = 0;
@@ -798,7 +828,8 @@ void main(void)
                     if (key_sleep_count > 0)
                     {
                         key_sleep_count--;
-                        delay_1ms();
+                        // delay_1ms();
+                        delay_ms(1);
                         if (key_sleep_count == 0)
                         {
 #if RT_DETECT_ENABLE
@@ -820,8 +851,9 @@ void main(void)
             }
 
             // light_mode = MODE_FADE;    // 开机默认模式
-            light_mode = MODE_ALWAYS_ON; // 开机默认模式
+            // light_mode = MODE_ALWAYS_ON; // 开机默认模式
             sleep_enalbe = 0;
+            flag_is_enable_light_trigger_mode = 1;
 
 #if RT_DETECT_ENABLE
             RT_DETECT_ON();
@@ -829,7 +861,7 @@ void main(void)
             KEY_KB_INT_ENABLE = 0;
             KBIE = 0;
             KBIF = 0;
-            T1EN = 1;
+            // T1EN = 1;
             GIE = 1;
         }
 
@@ -878,53 +910,86 @@ void int_isr(void) __interrupt
                 cnt = 0;
             }
         }
-        else if (flag_is_enable_light_trigger_mode)
+        else if (LIGHT_MODE_FLASH_2 == light_mode)
         {
             static u16 cnt = 0;
-            static u8 loop_cnt = 0;
-
-            if (cnt < 400)
+            cnt++;
+            if (cnt < 200)
             {
                 P12D = 0;
             }
-            // else if (cnt < 400)
-            else if (cnt < 800)
+            else if (cnt < 400)
             {
                 P12D = 1;
             }
             else
             {
                 cnt = 0;
-                loop_cnt++;
             }
+        }
+        else if (flag_is_enable_light_trigger_mode && LIGHT_MODE_TRIGGER == light_mode)
+        {
+            /*
+                如果在震动检测模式，并且检测到了震动
+            */
 
-            if (loop_cnt >= 8)
+            // static u16 cnt = 0;
+            static u16 loop_cnt = 0;
+
+            // cnt++;
+            loop_cnt++;
+            // if (cnt < 200)
+            // // if (cnt < 400)
+            // {
+            //     P12D = 0;
+            // }
+            // else if (cnt < 400)
+            // // else if (cnt < 800)
+            // {
+            //     P12D = 1;
+            // }
+            // else
+            // {
+            //     cnt = 0;
+            // }
+
+            P12D = 0;
+
+            if (loop_cnt >= 400)
             {
-                cnt = 0;
+                P12D = 1; // 结束后关闭灯光
+                // cnt = 0;
                 loop_cnt = 0;
                 flag_is_enable_light_trigger_mode = 0;
             }
+
+            // if (loop_cnt >= 8)
+            // {
+            //     cnt = 0;
+            //     loop_cnt = 0;
+            //     flag_is_enable_light_trigger_mode = 0;
+            // }
         }
 
         timer0_flag = 1;
     }
 
-    if ((T1IF) && (T1IE))
-    {
-        T1IF = 0;
+    // if ((T1IF) && (T1IE))
+    // {
+    //     T1IF = 0;
 
-        // timer1_count++;
-        // if (timer1_count > 28)
-        // {
-        //     T1IE = 0;
-        //     T1DATA = 0;
-        // }
-    }
+    //     // timer1_count++;
+    //     // if (timer1_count > 28)
+    //     // {
+    //     //     T1IE = 0;
+    //     //     T1DATA = 0;
+    //     // }
+    // }
 
-    if ((CMPIE) && (CMPIF))
-    {
-        CMPIF = 0;
-    }
+    // if ((CMPIE) && (CMPIF))
+    // {
+    //     CMPIF = 0;
+    // }
 
     __asm;
     swapar _statusbuf;
