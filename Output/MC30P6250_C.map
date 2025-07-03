@@ -1,12 +1,12 @@
 gplink-2.2.37 (Jan 22 2024)
-Map File - Created 2025-6-30  15:55:13
+Map File - Created 2025-7-3  10:27:35
  
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
                 ---------  ---------  ---------  ---------  ---------
                   STARTUP       code   00000000    program   0x000002
               c_interrupt       code   0x000008    program   0x0000c6
-         code_MC30P6250_C       code   0x00006b    program   0x000284
+         code_MC30P6250_C       code   0x00006b    program   0x000286
        UD_abs_mc30p6250_0      udata   00000000       data   0x000001
        UD_abs_mc30p6250_1      udata   0x000001       data   0x000001
        UD_abs_mc30p6250_2      udata   0x000002       data   0x000001
@@ -57,9 +57,9 @@ Map File - Created 2025-6-30  15:55:13
                            ---------   ---------
                             00000000    00000000
                             0x000008    0x00006a
-                            0x00006b    0x0001ac
+                            0x00006b    0x0001ad
  
-                            422 program addresses used
+                            423 program addresses used
  
                               Symbols
                      Name    Address   Location    Storage File
@@ -146,16 +146,16 @@ _int_isr_loop_cnt_196608_81   0x000026       data     static MC30P6250_C.asm
                _00150_DS_   0x000157    program     static MC30P6250_C.asm
                _00157_DS_   0x000158    program     static MC30P6250_C.asm
              _params_init   0x000159    program     extern MC30P6250_C.asm
-                _Sys_Init   0x000164    program     extern MC30P6250_C.asm
-         _TIMER0_INT_Init   0x00016f    program     extern MC30P6250_C.asm
-                 _IO_Init   0x000175    program     extern MC30P6250_C.asm
-                   _C_RAM   0x000183    program     extern MC30P6250_C.asm
-   _code_MC30P6250_C_011F   0x00018a    program     static MC30P6250_C.asm
-                _delay_ms   0x00018d    program     extern MC30P6250_C.asm
-               _00108_DS_   0x000190    program     static MC30P6250_C.asm
-               _00105_DS_   0x000198    program     static MC30P6250_C.asm
-               _00107_DS_   0x0001a6    program     static MC30P6250_C.asm
-               _00111_DS_   0x0001ac    program     static MC30P6250_C.asm
+                _Sys_Init   0x000165    program     extern MC30P6250_C.asm
+         _TIMER0_INT_Init   0x000170    program     extern MC30P6250_C.asm
+                 _IO_Init   0x000176    program     extern MC30P6250_C.asm
+                   _C_RAM   0x000184    program     extern MC30P6250_C.asm
+   _code_MC30P6250_C_0120   0x00018b    program     static MC30P6250_C.asm
+                _delay_ms   0x00018e    program     extern MC30P6250_C.asm
+               _00108_DS_   0x000191    program     static MC30P6250_C.asm
+               _00105_DS_   0x000199    program     static MC30P6250_C.asm
+               _00107_DS_   0x0001a7    program     static MC30P6250_C.asm
+               _00111_DS_   0x0001ad    program     static MC30P6250_C.asm
                 _INDFbits   00000000       data     extern mc30p6250.asm
                     _INDF   00000000       data     extern mc30p6250.asm
                _T0CNTbits   0x000001       data     extern mc30p6250.asm

@@ -1,5 +1,5 @@
 gplink-2.2.37 (Jan 22 2024)
-Listing File Generated: 2025-6-30  15:55:13
+Listing File Generated: 2025-7-3  10:27:35
  
  
 Address  Value    Disassembly              Source
@@ -315,33 +315,33 @@ Address  Value    Disassembly              Source
                                            ;; Starting pCode block
                                            _int_isr	;Function start
                                            ; 0 exit points
-                                           ;	.line	884; "MC30P6250_C.c"	__endasm;
+                                           ;	.line	888; "MC30P6250_C.c"	__endasm;
                                            	;
 000008   15a8     movra   0x28             	movra	_abuf;
 000009   1103     swapar  0x3              	swapar	_STATUS;
 00000a   15a9     movra   0x29             	movra	_statusbuf;
                                            	
-                                           ;	.line	886; "MC30P6250_C.c"	if ((T0IF) && (T0IE))
+                                           ;	.line	890; "MC30P6250_C.c"	if ((T0IF) && (T0IE))
 00000b   300f     jbset   0xf, 0           	JBSET	_INTFbits,0
 00000c   2866     goto    0x66             	GOTO	_00326_DS_
 00000d   300e     jbset   0xe, 0           	JBSET	_INTEbits,0
 00000e   2866     goto    0x66             	GOTO	_00326_DS_
-                                           ;	.line	888; "MC30P6250_C.c"	T0IF = 0;
+                                           ;	.line	892; "MC30P6250_C.c"	T0IF = 0;
 00000f   3c0f     bclr    0xf, 0           	BCLR	_INTFbits,0
-                                           ;	.line	890; "MC30P6250_C.c"	T0CNT = 255 - 62; // 递增计数器，需要手动装载 (约500us)
+                                           ;	.line	894; "MC30P6250_C.c"	T0CNT = 255 - 62; // 递增计数器，需要手动装载 (约500us)
 000010   0bc1     movai   0xc1             	MOVAI	0xc1
 000011   1581     movra   0x1              	MOVRA	_T0CNT
-                                           ;	.line	894; "MC30P6250_C.c"	if (LIGHT_MODE_FLASH == light_mode)
+                                           ;	.line	898; "MC30P6250_C.c"	if (LIGHT_MODE_FLASH == light_mode)
 000012   1630     movar   0x30             	MOVAR	_light_mode
 000013   0802     xorai   0x2              	XORAI	0x02
 000014   3103     jbset   0x3, 0x2         	JBSET	STATUS,2
 000015   2830     goto    0x30             	GOTO	_00323_DS_
-                                           ;	.line	897; "MC30P6250_C.c"	cnt++;
+                                           ;	.line	901; "MC30P6250_C.c"	cnt++;
 000016   19a2     incr    0x22             	INCR	_int_isr_cnt_196608_73
 000017   3503     jbclr   0x3, 0x2         	JBCLR	STATUS,2
 000018   19a3     incr    0x23             	INCR	(_int_isr_cnt_196608_73 + 1)
                                            ;;unsigned compare: left < lit(0x190=400), size=2
-                                           ;	.line	899; "MC30P6250_C.c"	if (cnt < 400)
+                                           ;	.line	903; "MC30P6250_C.c"	if (cnt < 400)
 000019   0b01     movai   0x1              	MOVAI	0x01
 00001a   1223     rsubar  0x23             	RSUBAR	(_int_isr_cnt_196608_73 + 1)
 00001b   3103     jbset   0x3, 0x2         	JBSET	STATUS,2
@@ -352,12 +352,12 @@ Address  Value    Disassembly              Source
 00001f   3403     jbclr   0x3, 0           	JBCLR	STATUS,0
 000020   2823     goto    0x23             	GOTO	_00306_DS_
                                            ;;genSkipc:3291: created from rifx:013B5EFC
-                                           ;	.line	901; "MC30P6250_C.c"	P12D = 0;
+                                           ;	.line	905; "MC30P6250_C.c"	P12D = 0;
 000021   3d06     bclr    0x6, 0x2         	BCLR	_P1bits,2
 000022   2864     goto    0x64             	GOTO	_00324_DS_
                                            ;;unsigned compare: left < lit(0x320=800), size=2
                                            _00306_DS_
-                                           ;	.line	904; "MC30P6250_C.c"	else if (cnt < 800)
+                                           ;	.line	908; "MC30P6250_C.c"	else if (cnt < 800)
 000023   0b03     movai   0x3              	MOVAI	0x03
 000024   1223     rsubar  0x23             	RSUBAR	(_int_isr_cnt_196608_73 + 1)
 000025   3103     jbset   0x3, 0x2         	JBSET	STATUS,2
@@ -368,26 +368,26 @@ Address  Value    Disassembly              Source
 000029   3403     jbclr   0x3, 0           	JBCLR	STATUS,0
 00002a   282d     goto    0x2d             	GOTO	_00303_DS_
                                            ;;genSkipc:3291: created from rifx:013B5EFC
-                                           ;	.line	906; "MC30P6250_C.c"	P12D = 1;
+                                           ;	.line	910; "MC30P6250_C.c"	P12D = 1;
 00002b   3906     bset    0x6, 0x2         	BSET	_P1bits,2
 00002c   2864     goto    0x64             	GOTO	_00324_DS_
                                            _00303_DS_
-                                           ;	.line	910; "MC30P6250_C.c"	cnt = 0;
+                                           ;	.line	914; "MC30P6250_C.c"	cnt = 0;
 00002d   1da2     clrr    0x22             	CLRR	_int_isr_cnt_196608_73
 00002e   1da3     clrr    0x23             	CLRR	(_int_isr_cnt_196608_73 + 1)
 00002f   2864     goto    0x64             	GOTO	_00324_DS_
                                            _00323_DS_
-                                           ;	.line	913; "MC30P6250_C.c"	else if (LIGHT_MODE_FLASH_2 == light_mode)
+                                           ;	.line	917; "MC30P6250_C.c"	else if (LIGHT_MODE_FLASH_2 == light_mode)
 000030   1630     movar   0x30             	MOVAR	_light_mode
 000031   0803     xorai   0x3              	XORAI	0x03
 000032   3103     jbset   0x3, 0x2         	JBSET	STATUS,2
 000033   284e     goto    0x4e             	GOTO	_00320_DS_
-                                           ;	.line	916; "MC30P6250_C.c"	cnt++;
+                                           ;	.line	920; "MC30P6250_C.c"	cnt++;
 000034   19a4     incr    0x24             	INCR	_int_isr_cnt_196608_77
 000035   3503     jbclr   0x3, 0x2         	JBCLR	STATUS,2
 000036   19a5     incr    0x25             	INCR	(_int_isr_cnt_196608_77 + 1)
                                            ;;unsigned compare: left < lit(0xC8=200), size=2
-                                           ;	.line	917; "MC30P6250_C.c"	if (cnt < 200)
+                                           ;	.line	921; "MC30P6250_C.c"	if (cnt < 200)
 000037   0b00     movai   0                	MOVAI	0x00
 000038   1225     rsubar  0x25             	RSUBAR	(_int_isr_cnt_196608_77 + 1)
 000039   3103     jbset   0x3, 0x2         	JBSET	STATUS,2
@@ -398,12 +398,12 @@ Address  Value    Disassembly              Source
 00003d   3403     jbclr   0x3, 0           	JBCLR	STATUS,0
 00003e   2841     goto    0x41             	GOTO	_00312_DS_
                                            ;;genSkipc:3291: created from rifx:013B5EFC
-                                           ;	.line	919; "MC30P6250_C.c"	P12D = 0;
+                                           ;	.line	923; "MC30P6250_C.c"	P12D = 0;
 00003f   3d06     bclr    0x6, 0x2         	BCLR	_P1bits,2
 000040   2864     goto    0x64             	GOTO	_00324_DS_
                                            ;;unsigned compare: left < lit(0x190=400), size=2
                                            _00312_DS_
-                                           ;	.line	921; "MC30P6250_C.c"	else if (cnt < 400)
+                                           ;	.line	925; "MC30P6250_C.c"	else if (cnt < 400)
 000041   0b01     movai   0x1              	MOVAI	0x01
 000042   1225     rsubar  0x25             	RSUBAR	(_int_isr_cnt_196608_77 + 1)
 000043   3103     jbset   0x3, 0x2         	JBSET	STATUS,2
@@ -414,30 +414,30 @@ Address  Value    Disassembly              Source
 000047   3403     jbclr   0x3, 0           	JBCLR	STATUS,0
 000048   284b     goto    0x4b             	GOTO	_00309_DS_
                                            ;;genSkipc:3291: created from rifx:013B5EFC
-                                           ;	.line	923; "MC30P6250_C.c"	P12D = 1;
+                                           ;	.line	927; "MC30P6250_C.c"	P12D = 1;
 000049   3906     bset    0x6, 0x2         	BSET	_P1bits,2
 00004a   2864     goto    0x64             	GOTO	_00324_DS_
                                            _00309_DS_
-                                           ;	.line	927; "MC30P6250_C.c"	cnt = 0;
+                                           ;	.line	931; "MC30P6250_C.c"	cnt = 0;
 00004b   1da4     clrr    0x24             	CLRR	_int_isr_cnt_196608_77
 00004c   1da5     clrr    0x25             	CLRR	(_int_isr_cnt_196608_77 + 1)
 00004d   2864     goto    0x64             	GOTO	_00324_DS_
                                            _00320_DS_
-                                           ;	.line	930; "MC30P6250_C.c"	else if (flag_is_enable_light_trigger_mode && LIGHT_MODE_TRIGGER == light_mode)
+                                           ;	.line	934; "MC30P6250_C.c"	else if (flag_is_enable_light_trigger_mode && LIGHT_MODE_TRIGGER == light_mode)
 00004e   302a     jbset   0x2a, 0          	JBSET	_flag1,0
 00004f   2864     goto    0x64             	GOTO	_00324_DS_
 000050   1630     movar   0x30             	MOVAR	_light_mode
 000051   0804     xorai   0x4              	XORAI	0x04
 000052   3103     jbset   0x3, 0x2         	JBSET	STATUS,2
 000053   2864     goto    0x64             	GOTO	_00324_DS_
-                                           ;	.line	940; "MC30P6250_C.c"	loop_cnt++;
+                                           ;	.line	944; "MC30P6250_C.c"	loop_cnt++;
 000054   19a6     incr    0x26             	INCR	_int_isr_loop_cnt_196608_81
 000055   3503     jbclr   0x3, 0x2         	JBCLR	STATUS,2
 000056   19a7     incr    0x27             	INCR	(_int_isr_loop_cnt_196608_81 + 1)
-                                           ;	.line	956; "MC30P6250_C.c"	P12D = 0;
+                                           ;	.line	960; "MC30P6250_C.c"	P12D = 0;
 000057   3d06     bclr    0x6, 0x2         	BCLR	_P1bits,2
                                            ;;unsigned compare: left < lit(0x190=400), size=2
-                                           ;	.line	958; "MC30P6250_C.c"	if (loop_cnt >= 400)
+                                           ;	.line	962; "MC30P6250_C.c"	if (loop_cnt >= 400)
 000058   0b01     movai   0x1              	MOVAI	0x01
 000059   1227     rsubar  0x27             	RSUBAR	(_int_isr_loop_cnt_196608_81 + 1)
 00005a   3103     jbset   0x3, 0x2         	JBSET	STATUS,2
@@ -448,19 +448,19 @@ Address  Value    Disassembly              Source
 00005e   3003     jbset   0x3, 0           	JBSET	STATUS,0
 00005f   2864     goto    0x64             	GOTO	_00324_DS_
                                            ;;genSkipc:3291: created from rifx:013B5EFC
-                                           ;	.line	960; "MC30P6250_C.c"	P12D = 1; // 结束后关闭灯光
+                                           ;	.line	964; "MC30P6250_C.c"	P12D = 1; // 结束后关闭灯光
 000060   3906     bset    0x6, 0x2         	BSET	_P1bits,2
-                                           ;	.line	962; "MC30P6250_C.c"	loop_cnt = 0;
+                                           ;	.line	966; "MC30P6250_C.c"	loop_cnt = 0;
 000061   1da6     clrr    0x26             	CLRR	_int_isr_loop_cnt_196608_81
 000062   1da7     clrr    0x27             	CLRR	(_int_isr_loop_cnt_196608_81 + 1)
-                                           ;	.line	963; "MC30P6250_C.c"	flag_is_enable_light_trigger_mode = 0;
+                                           ;	.line	967; "MC30P6250_C.c"	flag_is_enable_light_trigger_mode = 0;
 000063   3c2a     bclr    0x2a, 0          	BCLR	_flag1,0
                                            _00324_DS_
-                                           ;	.line	974; "MC30P6250_C.c"	timer0_flag = 1;
+                                           ;	.line	978; "MC30P6250_C.c"	timer0_flag = 1;
 000064   0b01     movai   0x1              	MOVAI	0x01
 000065   15b2     movra   0x32             	MOVRA	_timer0_flag
                                            _00326_DS_
-                                           ;	.line	999; "MC30P6250_C.c"	__endasm;
+                                           ;	.line	1003; "MC30P6250_C.c"	__endasm;
                                            	;
 000066   1129     swapar  0x29             	swapar	_statusbuf;
 000067   1583     movra   0x3              	movra	_STATUS;
@@ -468,7 +468,7 @@ Address  Value    Disassembly              Source
 000069   1128     swapar  0x28             	swapar	_abuf;
                                            	
                                            END_OF_INTERRUPT
-                                           ;	.line	1000; "MC30P6250_C.c"	}
+                                           ;	.line	1004; "MC30P6250_C.c"	}
 00006a   000d     retie                    	RETIE	
                                            
                                            ;--------------------------------------------------------
@@ -501,161 +501,161 @@ Address  Value    Disassembly              Source
                                            ;; Starting pCode block
                                            _main	;Function start
                                            ; 2 exit points
-                                           ;	.line	738; "MC30P6250_C.c"	Sys_Init();
-00006b   2164     call    0x164            	CALL	_Sys_Init
+                                           ;	.line	742; "MC30P6250_C.c"	Sys_Init();
+00006b   2165     call    0x165            	CALL	_Sys_Init
                                            _00297_DS_
-                                           ;	.line	751; "MC30P6250_C.c"	if (timer0_flag)
+                                           ;	.line	755; "MC30P6250_C.c"	if (timer0_flag)
 00006c   0b00     movai   0                	MOVAI	0x00
 00006d   1732     orar    0x32             	ORAR	_timer0_flag
 00006e   3503     jbclr   0x3, 0x2         	JBCLR	STATUS,2
 00006f   2874     goto    0x74             	GOTO	_00267_DS_
-                                           ;	.line	753; "MC30P6250_C.c"	timer0_flag = 0;
+                                           ;	.line	757; "MC30P6250_C.c"	timer0_flag = 0;
 000070   1db2     clrr    0x32             	CLRR	_timer0_flag
-                                           ;	.line	755; "MC30P6250_C.c"	light_mode_handle();
+                                           ;	.line	759; "MC30P6250_C.c"	light_mode_handle();
 000071   210f     call    0x10f            	CALL	_light_mode_handle
-                                           ;	.line	756; "MC30P6250_C.c"	key_scan();
+                                           ;	.line	760; "MC30P6250_C.c"	key_scan();
 000072   211b     call    0x11b            	CALL	_key_scan
-                                           ;	.line	758; "MC30P6250_C.c"	rt_detect_event();
+                                           ;	.line	762; "MC30P6250_C.c"	rt_detect_event();
 000073   20c5     call    0xc5             	CALL	_rt_detect_event
                                            _00267_DS_
-                                           ;	.line	762; "MC30P6250_C.c"	if (sleep_enalbe)
+                                           ;	.line	766; "MC30P6250_C.c"	if (sleep_enalbe)
 000074   0b00     movai   0                	MOVAI	0x00
 000075   1731     orar    0x31             	ORAR	_sleep_enalbe
 000076   3503     jbclr   0x3, 0x2         	JBCLR	STATUS,2
 000077   286c     goto    0x6c             	GOTO	_00297_DS_
-                                           ;	.line	769; "MC30P6250_C.c"	GIE = 0;
+                                           ;	.line	773; "MC30P6250_C.c"	GIE = 0;
 000078   3f8e     bclr    0xe, 0x7         	BCLR	_INTEbits,7
-                                           ;	.line	771; "MC30P6250_C.c"	P12D = 1; // 关闭灯光
+                                           ;	.line	775; "MC30P6250_C.c"	P12D = 1; // 关闭灯光
 000079   3906     bset    0x6, 0x2         	BSET	_P1bits,2
-                                           ;	.line	773; "MC30P6250_C.c"	OSCILLATION_PIN1 = 0;
+                                           ;	.line	777; "MC30P6250_C.c"	OSCILLATION_PIN1 = 0;
 00007a   3c86     bclr    0x6, 0x1         	BCLR	_P1bits,1
-                                           ;	.line	774; "MC30P6250_C.c"	OSCILLATION_PIN2 = 0;
+                                           ;	.line	778; "MC30P6250_C.c"	OSCILLATION_PIN2 = 0;
 00007b   3e06     bclr    0x6, 0x4         	BCLR	_P1bits,4
-                                           ;	.line	776; "MC30P6250_C.c"	OSCILLATION_PIN3 = 0;
+                                           ;	.line	780; "MC30P6250_C.c"	OSCILLATION_PIN3 = 0;
 00007c   3e86     bclr    0x6, 0x5         	BCLR	_P1bits,5
-                                           ;	.line	780; "MC30P6250_C.c"	key_sleep_count = 0;
+                                           ;	.line	784; "MC30P6250_C.c"	key_sleep_count = 0;
 00007d   1dab     clrr    0x2b             	CLRR	_key_sleep_count
                                            _00274_DS_
-                                           ;	.line	788; "MC30P6250_C.c"	delay_ms(1);
+                                           ;	.line	792; "MC30P6250_C.c"	delay_ms(1);
 00007e   0b01     movai   0x1              	MOVAI	0x01
 00007f   1596     movra   0x16             	MOVRA	STK00
 000080   0b00     movai   0                	MOVAI	0x00
-000081   218d     call    0x18d            	CALL	_delay_ms
-                                           ;	.line	789; "MC30P6250_C.c"	if (KEY_DET_PIN)
+000081   218e     call    0x18e            	CALL	_delay_ms
+                                           ;	.line	793; "MC30P6250_C.c"	if (KEY_DET_PIN)
 000082   3186     jbset   0x6, 0x3         	JBSET	_P1bits,3
 000083   288a     goto    0x8a             	GOTO	_00271_DS_
-                                           ;	.line	791; "MC30P6250_C.c"	key_sleep_count++;
+                                           ;	.line	795; "MC30P6250_C.c"	key_sleep_count++;
 000084   19ab     incr    0x2b             	INCR	_key_sleep_count
                                            ;;swapping arguments (AOP_TYPEs 1/3)
                                            ;;unsigned compare: left >= lit(0x65=101), size=1
-                                           ;	.line	792; "MC30P6250_C.c"	if (key_sleep_count > 100)
+                                           ;	.line	796; "MC30P6250_C.c"	if (key_sleep_count > 100)
 000085   0b65     movai   0x65             	MOVAI	0x65
 000086   122b     rsubar  0x2b             	RSUBAR	_key_sleep_count
 000087   3003     jbset   0x3, 0           	JBSET	STATUS,0
 000088   287e     goto    0x7e             	GOTO	_00274_DS_
                                            ;;genSkipc:3291: created from rifx:013B5EFC
-                                           ;	.line	794; "MC30P6250_C.c"	break;
+                                           ;	.line	798; "MC30P6250_C.c"	break;
 000089   288c     goto    0x8c             	GOTO	_00275_DS_
                                            _00271_DS_
-                                           ;	.line	799; "MC30P6250_C.c"	key_sleep_count = 0;
+                                           ;	.line	803; "MC30P6250_C.c"	key_sleep_count = 0;
 00008a   1dab     clrr    0x2b             	CLRR	_key_sleep_count
 00008b   287e     goto    0x7e             	GOTO	_00274_DS_
                                            _00275_DS_
-                                           ;	.line	803; "MC30P6250_C.c"	key_sleep_count = 1;
+                                           ;	.line	807; "MC30P6250_C.c"	key_sleep_count = 1;
 00008c   0b01     movai   0x1              	MOVAI	0x01
 00008d   15ab     movra   0x2b             	MOVRA	_key_sleep_count
                                            _00289_DS_
-                                           ;	.line	810; "MC30P6250_C.c"	if (KEY_DET_PIN == 0)
+                                           ;	.line	814; "MC30P6250_C.c"	if (KEY_DET_PIN == 0)
 00008e   3586     jbclr   0x6, 0x3         	JBCLR	_P1bits,3
 00008f   28a1     goto    0xa1             	GOTO	_00286_DS_
-                                           ;	.line	814; "MC30P6250_C.c"	delay_ms(10);
+                                           ;	.line	818; "MC30P6250_C.c"	delay_ms(10);
 000090   0b0a     movai   0xa              	MOVAI	0x0a
 000091   1596     movra   0x16             	MOVRA	STK00
 000092   0b00     movai   0                	MOVAI	0x00
-000093   218d     call    0x18d            	CALL	_delay_ms
+000093   218e     call    0x18e            	CALL	_delay_ms
                                            ;;unsigned compare: left < lit(0xC8=200), size=1
-                                           ;	.line	815; "MC30P6250_C.c"	if (key_sleep_count >= 200)
+                                           ;	.line	819; "MC30P6250_C.c"	if (key_sleep_count >= 200)
 000094   0bc8     movai   0xc8             	MOVAI	0xc8
 000095   122b     rsubar  0x2b             	RSUBAR	_key_sleep_count
 000096   3003     jbset   0x3, 0           	JBSET	STATUS,0
 000097   289f     goto    0x9f             	GOTO	_00277_DS_
                                            ;;genSkipc:3291: created from rifx:013B5EFC
-                                           ;	.line	817; "MC30P6250_C.c"	KBIF = 0;
+                                           ;	.line	821; "MC30P6250_C.c"	KBIF = 0;
 000098   3c8f     bclr    0xf, 0x1         	BCLR	_INTFbits,1
-                                           ;	.line	818; "MC30P6250_C.c"	KBIE = 1;
+                                           ;	.line	822; "MC30P6250_C.c"	KBIE = 1;
 000099   388e     bset    0xe, 0x1         	BSET	_INTEbits,1
-                                           ;	.line	819; "MC30P6250_C.c"	key_press_10ms_count = 200;
+                                           ;	.line	823; "MC30P6250_C.c"	key_press_10ms_count = 200;
 00009a   0bc8     movai   0xc8             	MOVAI	0xc8
 00009b   15af     movra   0x2f             	MOVRA	_key_press_10ms_count
-                                           ;	.line	820; "MC30P6250_C.c"	key_filtter = 0x00;
+                                           ;	.line	824; "MC30P6250_C.c"	key_filtter = 0x00;
 00009c   1dac     clrr    0x2c             	CLRR	_key_filtter
-                                           ;	.line	821; "MC30P6250_C.c"	key_level = 0;
+                                           ;	.line	825; "MC30P6250_C.c"	key_level = 0;
 00009d   1dae     clrr    0x2e             	CLRR	_key_level
-                                           ;	.line	822; "MC30P6250_C.c"	break;
+                                           ;	.line	826; "MC30P6250_C.c"	break;
 00009e   28bb     goto    0xbb             	GOTO	_00290_DS_
                                            _00277_DS_
-                                           ;	.line	824; "MC30P6250_C.c"	key_sleep_count++;
+                                           ;	.line	828; "MC30P6250_C.c"	key_sleep_count++;
 00009f   19ab     incr    0x2b             	INCR	_key_sleep_count
 0000a0   288e     goto    0x8e             	GOTO	_00289_DS_
                                            _00286_DS_
-                                           ;	.line	828; "MC30P6250_C.c"	if (key_sleep_count > 0)
+                                           ;	.line	832; "MC30P6250_C.c"	if (key_sleep_count > 0)
 0000a1   0b00     movai   0                	MOVAI	0x00
 0000a2   172b     orar    0x2b             	ORAR	_key_sleep_count
 0000a3   3503     jbclr   0x3, 0x2         	JBCLR	STATUS,2
 0000a4   288e     goto    0x8e             	GOTO	_00289_DS_
-                                           ;	.line	830; "MC30P6250_C.c"	key_sleep_count--;
+                                           ;	.line	834; "MC30P6250_C.c"	key_sleep_count--;
 0000a5   1bab     decr    0x2b             	DECR	_key_sleep_count
-                                           ;	.line	832; "MC30P6250_C.c"	delay_ms(1);
+                                           ;	.line	836; "MC30P6250_C.c"	delay_ms(1);
 0000a6   0b01     movai   0x1              	MOVAI	0x01
 0000a7   1596     movra   0x16             	MOVRA	STK00
 0000a8   0b00     movai   0                	MOVAI	0x00
-0000a9   218d     call    0x18d            	CALL	_delay_ms
-                                           ;	.line	833; "MC30P6250_C.c"	if (key_sleep_count == 0)
+0000a9   218e     call    0x18e            	CALL	_delay_ms
+                                           ;	.line	837; "MC30P6250_C.c"	if (key_sleep_count == 0)
 0000aa   0b00     movai   0                	MOVAI	0x00
 0000ab   172b     orar    0x2b             	ORAR	_key_sleep_count
 0000ac   3103     jbset   0x3, 0x2         	JBSET	STATUS,2
 0000ad   288e     goto    0x8e             	GOTO	_00289_DS_
-                                           ;	.line	836; "MC30P6250_C.c"	RT_DETECT_UNINIT();
+                                           ;	.line	840; "MC30P6250_C.c"	RT_DETECT_UNINIT();
 0000ae   380d     bset    0xd, 0           	BSET	_PUCONbits,0
 0000af   3a0b     bset    0xb, 0x4         	BSET	_PDCONbits,4
-                                           ;	.line	838; "MC30P6250_C.c"	KEY_KB_INT_ENABLE = 1;
+                                           ;	.line	842; "MC30P6250_C.c"	KEY_KB_INT_ENABLE = 1;
 0000b0   3989     bset    0x9, 0x3         	BSET	_P1KBCRbits,3
-                                           ;	.line	839; "MC30P6250_C.c"	KBIF = 0;
+                                           ;	.line	843; "MC30P6250_C.c"	KBIF = 0;
 0000b1   3c8f     bclr    0xf, 0x1         	BCLR	_INTFbits,1
-                                           ;	.line	840; "MC30P6250_C.c"	KBIE = 1;
+                                           ;	.line	844; "MC30P6250_C.c"	KBIE = 1;
 0000b2   388e     bset    0xe, 0x1         	BSET	_INTEbits,1
-                                           ;	.line	842; "MC30P6250_C.c"	Nop();
-0000b3   0000     nop                      	nop	
-                                           ;	.line	843; "MC30P6250_C.c"	Nop();
-0000b4   0000     nop                      	nop	
-                                           ;	.line	844; "MC30P6250_C.c"	Stop();
-0000b5   000b     sleep                    	stop	
-                                           ;	.line	845; "MC30P6250_C.c"	Nop();
-0000b6   0000     nop                      	nop	
                                            ;	.line	846; "MC30P6250_C.c"	Nop();
+0000b3   0000     nop                      	nop	
+                                           ;	.line	847; "MC30P6250_C.c"	Nop();
+0000b4   0000     nop                      	nop	
+                                           ;	.line	848; "MC30P6250_C.c"	Stop();
+0000b5   000b     sleep                    	stop	
+                                           ;	.line	849; "MC30P6250_C.c"	Nop();
+0000b6   0000     nop                      	nop	
+                                           ;	.line	850; "MC30P6250_C.c"	Nop();
 0000b7   0000     nop                      	nop	
-                                           ;	.line	847; "MC30P6250_C.c"	key_sleep_count = 1;
+                                           ;	.line	851; "MC30P6250_C.c"	key_sleep_count = 1;
 0000b8   0b01     movai   0x1              	MOVAI	0x01
 0000b9   15ab     movra   0x2b             	MOVRA	_key_sleep_count
 0000ba   288e     goto    0x8e             	GOTO	_00289_DS_
                                            _00290_DS_
-                                           ;	.line	855; "MC30P6250_C.c"	sleep_enalbe = 0;
+                                           ;	.line	859; "MC30P6250_C.c"	sleep_enalbe = 0;
 0000bb   1db1     clrr    0x31             	CLRR	_sleep_enalbe
-                                           ;	.line	856; "MC30P6250_C.c"	flag_is_enable_light_trigger_mode = 1;
+                                           ;	.line	860; "MC30P6250_C.c"	flag_is_enable_light_trigger_mode = 1;
 0000bc   382a     bset    0x2a, 0          	BSET	_flag1,0
-                                           ;	.line	859; "MC30P6250_C.c"	RT_DETECT_ON();
+                                           ;	.line	863; "MC30P6250_C.c"	RT_DETECT_ON();
 0000bd   3c0d     bclr    0xd, 0           	BCLR	_PUCONbits,0
 0000be   3a0b     bset    0xb, 0x4         	BSET	_PDCONbits,4
-                                           ;	.line	861; "MC30P6250_C.c"	KEY_KB_INT_ENABLE = 0;
+                                           ;	.line	865; "MC30P6250_C.c"	KEY_KB_INT_ENABLE = 0;
 0000bf   3d89     bclr    0x9, 0x3         	BCLR	_P1KBCRbits,3
-                                           ;	.line	862; "MC30P6250_C.c"	KBIE = 0;
+                                           ;	.line	866; "MC30P6250_C.c"	KBIE = 0;
 0000c0   3c8e     bclr    0xe, 0x1         	BCLR	_INTEbits,1
-                                           ;	.line	863; "MC30P6250_C.c"	KBIF = 0;
+                                           ;	.line	867; "MC30P6250_C.c"	KBIF = 0;
 0000c1   3c8f     bclr    0xf, 0x1         	BCLR	_INTFbits,1
-                                           ;	.line	865; "MC30P6250_C.c"	GIE = 1;
+                                           ;	.line	869; "MC30P6250_C.c"	GIE = 1;
 0000c2   3b8e     bset    0xe, 0x7         	BSET	_INTEbits,7
 0000c3   286c     goto    0x6c             	GOTO	_00297_DS_
-                                           ;	.line	870; "MC30P6250_C.c"	}
+                                           ;	.line	874; "MC30P6250_C.c"	}
 0000c4   000c     return                   	RETURN	
                                            ; exit point of _main
                                            
@@ -670,57 +670,57 @@ Address  Value    Disassembly              Source
                                            ;; Starting pCode block
                                            _rt_detect_event	;Function start
                                            ; 2 exit points
-                                           ;	.line	650; "MC30P6250_C.c"	if (switch_mode_count > 0)
+                                           ;	.line	654; "MC30P6250_C.c"	if (switch_mode_count > 0)
 0000c5   161d     movar   0x1d             	MOVAR	_rt_detect_event_switch_mode_count_65536_37
 0000c6   171e     orar    0x1e             	ORAR	(_rt_detect_event_switch_mode_count_65536_37 + 1)
 0000c7   3503     jbclr   0x3, 0x2         	JBCLR	STATUS,2
 0000c8   28df     goto    0xdf             	GOTO	_00195_DS_
-                                           ;	.line	652; "MC30P6250_C.c"	switch_mode_count--;
+                                           ;	.line	656; "MC30P6250_C.c"	switch_mode_count--;
 0000c9   0bff     movai   0xff             	MOVAI	0xff
 0000ca   1f9d     addra   0x1d             	ADDRA	_rt_detect_event_switch_mode_count_65536_37
 0000cb   3003     jbset   0x3, 0           	JBSET	STATUS,0
 0000cc   1b9e     decr    0x1e             	DECR	(_rt_detect_event_switch_mode_count_65536_37 + 1)
-                                           ;	.line	653; "MC30P6250_C.c"	if (switch_mode_count == 0)
+                                           ;	.line	657; "MC30P6250_C.c"	if (switch_mode_count == 0)
 0000cd   161d     movar   0x1d             	MOVAR	_rt_detect_event_switch_mode_count_65536_37
 0000ce   171e     orar    0x1e             	ORAR	(_rt_detect_event_switch_mode_count_65536_37 + 1)
 0000cf   3103     jbset   0x3, 0x2         	JBSET	STATUS,2
 0000d0   28e3     goto    0xe3             	GOTO	_00196_DS_
-                                           ;	.line	655; "MC30P6250_C.c"	if (IS_RT_DETECT())
+                                           ;	.line	659; "MC30P6250_C.c"	if (IS_RT_DETECT())
 0000d1   320b     jbset   0xb, 0x4         	JBSET	_PDCONbits,4
 0000d2   28d9     goto    0xd9             	GOTO	_00186_DS_
-                                           ;	.line	657; "MC30P6250_C.c"	RT_DETECT_OFF();
+                                           ;	.line	661; "MC30P6250_C.c"	RT_DETECT_OFF();
 0000d3   380d     bset    0xd, 0           	BSET	_PUCONbits,0
 0000d4   3e0b     bclr    0xb, 0x4         	BCLR	_PDCONbits,4
-                                           ;	.line	658; "MC30P6250_C.c"	switch_mode_count = 3;
+                                           ;	.line	662; "MC30P6250_C.c"	switch_mode_count = 3;
 0000d5   0b03     movai   0x3              	MOVAI	0x03
 0000d6   159d     movra   0x1d             	MOVRA	_rt_detect_event_switch_mode_count_65536_37
 0000d7   1d9e     clrr    0x1e             	CLRR	(_rt_detect_event_switch_mode_count_65536_37 + 1)
 0000d8   28de     goto    0xde             	GOTO	_00191_DS_
                                            _00186_DS_
-                                           ;	.line	662; "MC30P6250_C.c"	RT_DETECT_ON();
+                                           ;	.line	666; "MC30P6250_C.c"	RT_DETECT_ON();
 0000d9   3c0d     bclr    0xd, 0           	BCLR	_PUCONbits,0
 0000da   3a0b     bset    0xb, 0x4         	BSET	_PDCONbits,4
-                                           ;	.line	663; "MC30P6250_C.c"	switch_mode_count = 40;
+                                           ;	.line	667; "MC30P6250_C.c"	switch_mode_count = 40;
 0000db   0b28     movai   0x28             	MOVAI	0x28
 0000dc   159d     movra   0x1d             	MOVRA	_rt_detect_event_switch_mode_count_65536_37
 0000dd   1d9e     clrr    0x1e             	CLRR	(_rt_detect_event_switch_mode_count_65536_37 + 1)
                                            _00191_DS_
-                                           ;	.line	665; "MC30P6250_C.c"	return; // 跳过这个周期，让上/下拉电阻有时间稳定电压
+                                           ;	.line	669; "MC30P6250_C.c"	return; // 跳过这个周期，让上/下拉电阻有时间稳定电压
 0000de   290e     goto    0x10e            	GOTO	_00214_DS_
                                            _00195_DS_
-                                           ;	.line	670; "MC30P6250_C.c"	switch_mode_count = 1;
+                                           ;	.line	674; "MC30P6250_C.c"	switch_mode_count = 1;
 0000df   0b01     movai   0x1              	MOVAI	0x01
 0000e0   159d     movra   0x1d             	MOVRA	_rt_detect_event_switch_mode_count_65536_37
 0000e1   1d9e     clrr    0x1e             	CLRR	(_rt_detect_event_switch_mode_count_65536_37 + 1)
-                                           ;	.line	671; "MC30P6250_C.c"	return;
+                                           ;	.line	675; "MC30P6250_C.c"	return;
 0000e2   290e     goto    0x10e            	GOTO	_00214_DS_
                                            _00196_DS_
-                                           ;	.line	682; "MC30P6250_C.c"	if (IS_RT_DETECT())
+                                           ;	.line	686; "MC30P6250_C.c"	if (IS_RT_DETECT())
 0000e3   320b     jbset   0xb, 0x4         	JBSET	_PDCONbits,4
 0000e4   290a     goto    0x10a            	GOTO	_00212_DS_
                                            ;;100	MOVAR	_rt_detect_event_Statue_65536_37
                                            ;;99	MOVAR	r0x1014
-                                           ;	.line	685; "MC30P6250_C.c"	switch (Statue)
+                                           ;	.line	689; "MC30P6250_C.c"	switch (Statue)
 0000e5   161f     movar   0x1f             	MOVAR	_rt_detect_event_Statue_65536_37
 0000e6   1598     movra   0x18             	MOVRA	r0x1014
 0000e7   3103     jbset   0x3, 0x2         	JBSET	STATUS,2
@@ -735,63 +735,63 @@ Address  Value    Disassembly              Source
                                            _00261_DS_
 0000ef   2902     goto    0x102            	GOTO	_00206_DS_
                                            _00197_DS_
-                                           ;	.line	688; "MC30P6250_C.c"	if (!RT_CHARGE_DET_PIN) // 由高电平转为低电平回复常态
+                                           ;	.line	692; "MC30P6250_C.c"	if (!RT_CHARGE_DET_PIN) // 由高电平转为低电平回复常态
 0000f0   3406     jbclr   0x6, 0           	JBCLR	_P1bits,0
 0000f1   2902     goto    0x102            	GOTO	_00206_DS_
-                                           ;	.line	690; "MC30P6250_C.c"	Statue = 1;
+                                           ;	.line	694; "MC30P6250_C.c"	Statue = 1;
 0000f2   0b01     movai   0x1              	MOVAI	0x01
 0000f3   159f     movra   0x1f             	MOVRA	_rt_detect_event_Statue_65536_37
-                                           ;	.line	692; "MC30P6250_C.c"	break;
+                                           ;	.line	696; "MC30P6250_C.c"	break;
 0000f4   2902     goto    0x102            	GOTO	_00206_DS_
                                            _00200_DS_
-                                           ;	.line	695; "MC30P6250_C.c"	if (RT_CHARGE_DET_PIN) // 由低电平转为高电平加1
+                                           ;	.line	699; "MC30P6250_C.c"	if (RT_CHARGE_DET_PIN) // 由低电平转为高电平加1
 0000f5   3006     jbset   0x6, 0           	JBSET	_P1bits,0
 0000f6   28fb     goto    0xfb             	GOTO	_00204_DS_
-                                           ;	.line	697; "MC30P6250_C.c"	Statue = 0;
+                                           ;	.line	701; "MC30P6250_C.c"	Statue = 0;
 0000f7   1d9f     clrr    0x1f             	CLRR	_rt_detect_event_Statue_65536_37
-                                           ;	.line	698; "MC30P6250_C.c"	pluse_count++;
+                                           ;	.line	702; "MC30P6250_C.c"	pluse_count++;
 0000f8   19a0     incr    0x20             	INCR	_rt_detect_event_pluse_count_65536_37
-                                           ;	.line	699; "MC30P6250_C.c"	pluse_time = 0;
+                                           ;	.line	703; "MC30P6250_C.c"	pluse_time = 0;
 0000f9   1da1     clrr    0x21             	CLRR	_rt_detect_event_pluse_time_65536_37
 0000fa   2902     goto    0x102            	GOTO	_00206_DS_
                                            _00204_DS_
-                                           ;	.line	703; "MC30P6250_C.c"	pluse_time++;
+                                           ;	.line	707; "MC30P6250_C.c"	pluse_time++;
 0000fb   19a1     incr    0x21             	INCR	_rt_detect_event_pluse_time_65536_37
                                            ;;unsigned compare: left < lit(0x96=150), size=1
-                                           ;	.line	704; "MC30P6250_C.c"	if (pluse_time >= 150)
+                                           ;	.line	708; "MC30P6250_C.c"	if (pluse_time >= 150)
 0000fc   0b96     movai   0x96             	MOVAI	0x96
 0000fd   1221     rsubar  0x21             	RSUBAR	_rt_detect_event_pluse_time_65536_37
 0000fe   3003     jbset   0x3, 0           	JBSET	STATUS,0
 0000ff   2902     goto    0x102            	GOTO	_00206_DS_
                                            ;;genSkipc:3291: created from rifx:013B5EFC
-                                           ;	.line	706; "MC30P6250_C.c"	pluse_time = 0;
+                                           ;	.line	710; "MC30P6250_C.c"	pluse_time = 0;
 000100   1da1     clrr    0x21             	CLRR	_rt_detect_event_pluse_time_65536_37
-                                           ;	.line	707; "MC30P6250_C.c"	pluse_count = 0;
+                                           ;	.line	711; "MC30P6250_C.c"	pluse_count = 0;
 000101   1da0     clrr    0x20             	CLRR	_rt_detect_event_pluse_count_65536_37
                                            ;;unsigned compare: left < lit(0x5=5), size=1
                                            _00206_DS_
-                                           ;	.line	713; "MC30P6250_C.c"	if (pluse_count >= 5) // lmd_buf[sys_ctl.lmd_num-1])//灵敏度调节参数,越少越敏感
+                                           ;	.line	717; "MC30P6250_C.c"	if (pluse_count >= 5) // lmd_buf[sys_ctl.lmd_num-1])//灵敏度调节参数,越少越敏感
 000102   0b05     movai   0x5              	MOVAI	0x05
 000103   1220     rsubar  0x20             	RSUBAR	_rt_detect_event_pluse_count_65536_37
 000104   3003     jbset   0x3, 0           	JBSET	STATUS,0
 000105   290e     goto    0x10e            	GOTO	_00214_DS_
                                            ;;genSkipc:3291: created from rifx:013B5EFC
-                                           ;	.line	715; "MC30P6250_C.c"	pluse_count = 0;
+                                           ;	.line	719; "MC30P6250_C.c"	pluse_count = 0;
 000106   1da0     clrr    0x20             	CLRR	_rt_detect_event_pluse_count_65536_37
-                                           ;	.line	716; "MC30P6250_C.c"	pluse_time = 0;
+                                           ;	.line	720; "MC30P6250_C.c"	pluse_time = 0;
 000107   1da1     clrr    0x21             	CLRR	_rt_detect_event_pluse_time_65536_37
-                                           ;	.line	722; "MC30P6250_C.c"	flag_is_enable_light_trigger_mode = 1;
+                                           ;	.line	726; "MC30P6250_C.c"	flag_is_enable_light_trigger_mode = 1;
 000108   382a     bset    0x2a, 0          	BSET	_flag1,0
 000109   290e     goto    0x10e            	GOTO	_00214_DS_
                                            _00212_DS_
-                                           ;	.line	728; "MC30P6250_C.c"	if (RT_CHARGE_DET_PIN)
+                                           ;	.line	732; "MC30P6250_C.c"	if (RT_CHARGE_DET_PIN)
 00010a   3006     jbset   0x6, 0           	JBSET	_P1bits,0
 00010b   290e     goto    0x10e            	GOTO	_00214_DS_
-                                           ;	.line	729; "MC30P6250_C.c"	sleep_enalbe = 1;
+                                           ;	.line	733; "MC30P6250_C.c"	sleep_enalbe = 1;
 00010c   0b01     movai   0x1              	MOVAI	0x01
 00010d   15b1     movra   0x31             	MOVRA	_sleep_enalbe
                                            _00214_DS_
-                                           ;	.line	731; "MC30P6250_C.c"	}
+                                           ;	.line	735; "MC30P6250_C.c"	}
 00010e   000c     return                   	RETURN	
                                            ; exit point of _rt_detect_event
                                            
@@ -804,23 +804,23 @@ Address  Value    Disassembly              Source
                                            ;; Starting pCode block
                                            _light_mode_handle	;Function start
                                            ; 2 exit points
-                                           ;	.line	332; "MC30P6250_C.c"	if (LIGHT_MODE_ALWAYS_ON == light_mode)
+                                           ;	.line	336; "MC30P6250_C.c"	if (LIGHT_MODE_ALWAYS_ON == light_mode)
 00010f   1630     movar   0x30             	MOVAR	_light_mode
 000110   0801     xorai   0x1              	XORAI	0x01
 000111   3103     jbset   0x3, 0x2         	JBSET	STATUS,2
 000112   2915     goto    0x115            	GOTO	_00166_DS_
-                                           ;	.line	334; "MC30P6250_C.c"	P12D = 0;
+                                           ;	.line	338; "MC30P6250_C.c"	P12D = 0;
 000113   3d06     bclr    0x6, 0x2         	BCLR	_P1bits,2
 000114   291a     goto    0x11a            	GOTO	_00168_DS_
                                            _00166_DS_
-                                           ;	.line	336; "MC30P6250_C.c"	else if (LIGHT_MODE_FLASH == light_mode)
+                                           ;	.line	340; "MC30P6250_C.c"	else if (LIGHT_MODE_FLASH == light_mode)
 000115   1630     movar   0x30             	MOVAR	_light_mode
 000116   0802     xorai   0x2              	XORAI	0x02
 000117   3103     jbset   0x3, 0x2         	JBSET	STATUS,2
 000118   291a     goto    0x11a            	GOTO	_00168_DS_
 000119   291a     goto    0x11a            	GOTO	_00168_DS_
                                            _00168_DS_
-                                           ;	.line	347; "MC30P6250_C.c"	}
+                                           ;	.line	351; "MC30P6250_C.c"	}
 00011a   000c     return                   	RETURN	
                                            ; exit point of _light_mode_handle
                                            
@@ -835,79 +835,79 @@ Address  Value    Disassembly              Source
                                            ;; Starting pCode block
                                            _key_scan	;Function start
                                            ; 2 exit points
-                                           ;	.line	276; "MC30P6250_C.c"	key_scan_count++;
+                                           ;	.line	280; "MC30P6250_C.c"	key_scan_count++;
 00011b   19ad     incr    0x2d             	INCR	_key_scan_count
                                            ;;unsigned compare: left < lit(0xA=10), size=1
-                                           ;	.line	277; "MC30P6250_C.c"	if (key_scan_count >= 10)
+                                           ;	.line	281; "MC30P6250_C.c"	if (key_scan_count >= 10)
 00011c   0b0a     movai   0xa              	MOVAI	0x0a
 00011d   122d     rsubar  0x2d             	RSUBAR	_key_scan_count
 00011e   3003     jbset   0x3, 0           	JBSET	STATUS,0
 00011f   2958     goto    0x158            	GOTO	_00157_DS_
                                            ;;genSkipc:3291: created from rifx:013B5EFC
-                                           ;	.line	279; "MC30P6250_C.c"	key_scan_count = 0;
+                                           ;	.line	283; "MC30P6250_C.c"	key_scan_count = 0;
 000120   1dad     clrr    0x2d             	CLRR	_key_scan_count
-                                           ;	.line	281; "MC30P6250_C.c"	key_filtter <<= 1;
+                                           ;	.line	285; "MC30P6250_C.c"	key_filtter <<= 1;
 000121   162c     movar   0x2c             	MOVAR	_key_filtter
 000122   1598     movra   0x18             	MOVRA	r0x1014
 000123   3c03     bclr    0x3, 0           	BCLR	STATUS,0
 000124   1418     rlar    0x18             	RLAR	r0x1014
 000125   15ac     movra   0x2c             	MOVRA	_key_filtter
-                                           ;	.line	282; "MC30P6250_C.c"	if (KEY_DET_PIN)
+                                           ;	.line	286; "MC30P6250_C.c"	if (KEY_DET_PIN)
 000126   3186     jbset   0x6, 0x3         	JBSET	_P1bits,3
 000127   2929     goto    0x129            	GOTO	_00137_DS_
-                                           ;	.line	283; "MC30P6250_C.c"	key_filtter |= 0x01;
+                                           ;	.line	287; "MC30P6250_C.c"	key_filtter |= 0x01;
 000128   382c     bset    0x2c, 0          	BSET	_key_filtter,0
                                            _00137_DS_
-                                           ;	.line	285; "MC30P6250_C.c"	key_filtter &= KEY_FILTTER_PARAM;
+                                           ;	.line	289; "MC30P6250_C.c"	key_filtter &= KEY_FILTTER_PARAM;
 000129   0b0f     movai   0xf              	MOVAI	0x0f
 00012a   1eac     andra   0x2c             	ANDRA	_key_filtter
-                                           ;	.line	286; "MC30P6250_C.c"	if (key_filtter == KEY_FILTTER_PARAM)
+                                           ;	.line	290; "MC30P6250_C.c"	if (key_filtter == KEY_FILTTER_PARAM)
 00012b   162c     movar   0x2c             	MOVAR	_key_filtter
 00012c   080f     xorai   0xf              	XORAI	0x0f
 00012d   3103     jbset   0x3, 0x2         	JBSET	STATUS,2
 00012e   2932     goto    0x132            	GOTO	_00141_DS_
-                                           ;	.line	287; "MC30P6250_C.c"	key_level = 1;
+                                           ;	.line	291; "MC30P6250_C.c"	key_level = 1;
 00012f   0b01     movai   0x1              	MOVAI	0x01
 000130   15ae     movra   0x2e             	MOVRA	_key_level
 000131   2937     goto    0x137            	GOTO	_00142_DS_
                                            _00141_DS_
-                                           ;	.line	288; "MC30P6250_C.c"	else if (key_filtter == 0)
+                                           ;	.line	292; "MC30P6250_C.c"	else if (key_filtter == 0)
 000132   0b00     movai   0                	MOVAI	0x00
 000133   172c     orar    0x2c             	ORAR	_key_filtter
 000134   3103     jbset   0x3, 0x2         	JBSET	STATUS,2
 000135   2937     goto    0x137            	GOTO	_00142_DS_
-                                           ;	.line	289; "MC30P6250_C.c"	key_level = 0;
+                                           ;	.line	293; "MC30P6250_C.c"	key_level = 0;
 000136   1dae     clrr    0x2e             	CLRR	_key_level
                                            _00142_DS_
-                                           ;	.line	291; "MC30P6250_C.c"	if (key_level == 0)
+                                           ;	.line	295; "MC30P6250_C.c"	if (key_level == 0)
 000137   0b00     movai   0                	MOVAI	0x00
 000138   172e     orar    0x2e             	ORAR	_key_level
 000139   3103     jbset   0x3, 0x2         	JBSET	STATUS,2
 00013a   2947     goto    0x147            	GOTO	_00153_DS_
                                            ;;swapping arguments (AOP_TYPEs 1/3)
                                            ;;unsigned compare: left >= lit(0xC9=201), size=1
-                                           ;	.line	293; "MC30P6250_C.c"	if (key_press_10ms_count <= 200)
+                                           ;	.line	297; "MC30P6250_C.c"	if (key_press_10ms_count <= 200)
 00013b   0bc9     movai   0xc9             	MOVAI	0xc9
 00013c   122f     rsubar  0x2f             	RSUBAR	_key_press_10ms_count
 00013d   3403     jbclr   0x3, 0           	JBCLR	STATUS,0
 00013e   2940     goto    0x140            	GOTO	_00144_DS_
                                            ;;genSkipc:3291: created from rifx:013B5EFC
-                                           ;	.line	295; "MC30P6250_C.c"	key_press_10ms_count++;
+                                           ;	.line	299; "MC30P6250_C.c"	key_press_10ms_count++;
 00013f   19af     incr    0x2f             	INCR	_key_press_10ms_count
                                            _00144_DS_
-                                           ;	.line	296; "MC30P6250_C.c"	if (key_press_10ms_count == 200)
+                                           ;	.line	300; "MC30P6250_C.c"	if (key_press_10ms_count == 200)
 000140   162f     movar   0x2f             	MOVAR	_key_press_10ms_count
 000141   08c8     xorai   0xc8             	XORAI	0xc8
 000142   3103     jbset   0x3, 0x2         	JBSET	STATUS,2
 000143   2958     goto    0x158            	GOTO	_00157_DS_
-                                           ;	.line	298; "MC30P6250_C.c"	sleep_enalbe = 1;
+                                           ;	.line	302; "MC30P6250_C.c"	sleep_enalbe = 1;
 000144   0b01     movai   0x1              	MOVAI	0x01
 000145   15b1     movra   0x31             	MOVRA	_sleep_enalbe
 000146   2958     goto    0x158            	GOTO	_00157_DS_
                                            ;;swapping arguments (AOP_TYPEs 1/3)
                                            ;;unsigned compare: left >= lit(0x15=21), size=1
                                            _00153_DS_
-                                           ;	.line	303; "MC30P6250_C.c"	if (key_press_10ms_count > 20 && key_press_10ms_count < 200)
+                                           ;	.line	307; "MC30P6250_C.c"	if (key_press_10ms_count > 20 && key_press_10ms_count < 200)
 000147   0b15     movai   0x15             	MOVAI	0x15
 000148   122f     rsubar  0x2f             	RSUBAR	_key_press_10ms_count
 000149   3003     jbset   0x3, 0           	JBSET	STATUS,0
@@ -919,26 +919,26 @@ Address  Value    Disassembly              Source
 00014d   3403     jbclr   0x3, 0           	JBCLR	STATUS,0
 00014e   2957     goto    0x157            	GOTO	_00150_DS_
                                            ;;genSkipc:3291: created from rifx:013B5EFC
-                                           ;	.line	318; "MC30P6250_C.c"	light_mode++;
+                                           ;	.line	322; "MC30P6250_C.c"	light_mode++;
 00014f   19b0     incr    0x30             	INCR	_light_mode
-                                           ;	.line	319; "MC30P6250_C.c"	flag_is_enable_light_trigger_mode = 1;
+                                           ;	.line	323; "MC30P6250_C.c"	flag_is_enable_light_trigger_mode = 1;
 000150   382a     bset    0x2a, 0          	BSET	_flag1,0
                                            ;;swapping arguments (AOP_TYPEs 1/3)
                                            ;;unsigned compare: left >= lit(0x5=5), size=1
-                                           ;	.line	320; "MC30P6250_C.c"	if (light_mode > LIGHT_MODE_TRIGGER)
+                                           ;	.line	324; "MC30P6250_C.c"	if (light_mode > LIGHT_MODE_TRIGGER)
 000151   0b05     movai   0x5              	MOVAI	0x05
 000152   1230     rsubar  0x30             	RSUBAR	_light_mode
 000153   3003     jbset   0x3, 0           	JBSET	STATUS,0
 000154   2957     goto    0x157            	GOTO	_00150_DS_
                                            ;;genSkipc:3291: created from rifx:013B5EFC
-                                           ;	.line	322; "MC30P6250_C.c"	light_mode = LIGHT_MODE_ALWAYS_ON;
+                                           ;	.line	326; "MC30P6250_C.c"	light_mode = LIGHT_MODE_ALWAYS_ON;
 000155   0b01     movai   0x1              	MOVAI	0x01
 000156   15b0     movra   0x30             	MOVRA	_light_mode
                                            _00150_DS_
-                                           ;	.line	325; "MC30P6250_C.c"	key_press_10ms_count = 0;
+                                           ;	.line	329; "MC30P6250_C.c"	key_press_10ms_count = 0;
 000157   1daf     clrr    0x2f             	CLRR	_key_press_10ms_count
                                            _00157_DS_
-                                           ;	.line	328; "MC30P6250_C.c"	}
+                                           ;	.line	332; "MC30P6250_C.c"	}
 000158   000c     return                   	RETURN	
                                            ; exit point of _key_scan
                                            
@@ -966,10 +966,11 @@ Address  Value    Disassembly              Source
                                            ;	.line	266; "MC30P6250_C.c"	sleep_enalbe = 1;
 000160   0b01     movai   0x1              	MOVAI	0x01
 000161   15b1     movra   0x31             	MOVRA	_sleep_enalbe
-                                           ;	.line	269; "MC30P6250_C.c"	light_mode = LIGHT_MODE_NONE; // 上电默认模式
-000162   1db0     clrr    0x30             	CLRR	_light_mode
-                                           ;	.line	271; "MC30P6250_C.c"	}
-000163   000c     return                   	RETURN	
+                                           ;	.line	272; "MC30P6250_C.c"	light_mode = LIGHT_MODE_ALWAYS_ON;
+000162   0b01     movai   0x1              	MOVAI	0x01
+000163   15b0     movra   0x30             	MOVRA	_light_mode
+                                           ;	.line	275; "MC30P6250_C.c"	}
+000164   000c     return                   	RETURN	
                                            ; exit point of _params_init
                                            
                                            ;***
@@ -995,24 +996,24 @@ Address  Value    Disassembly              Source
                                            _Sys_Init	;Function start
                                            ; 2 exit points
                                            ;	.line	242; "MC30P6250_C.c"	GIE = 0;
-000164   3f8e     bclr    0xe, 0x7         	BCLR	_INTEbits,7
+000165   3f8e     bclr    0xe, 0x7         	BCLR	_INTEbits,7
                                            ;	.line	243; "MC30P6250_C.c"	C_RAM();
-000165   2183     call    0x183            	CALL	_C_RAM
+000166   2184     call    0x184            	CALL	_C_RAM
                                            ;	.line	244; "MC30P6250_C.c"	params_init();
-000166   2159     call    0x159            	CALL	_params_init
+000167   2159     call    0x159            	CALL	_params_init
                                            ;	.line	245; "MC30P6250_C.c"	IO_Init();
-000167   2175     call    0x175            	CALL	_IO_Init
+000168   2176     call    0x176            	CALL	_IO_Init
                                            ;	.line	246; "MC30P6250_C.c"	TIMER0_INT_Init();
-000168   216f     call    0x16f            	CALL	_TIMER0_INT_Init
+000169   2170     call    0x170            	CALL	_TIMER0_INT_Init
                                            ;	.line	250; "MC30P6250_C.c"	delay_ms(1);
-000169   0b01     movai   0x1              	MOVAI	0x01
-00016a   1596     movra   0x16             	MOVRA	STK00
-00016b   0b00     movai   0                	MOVAI	0x00
-00016c   218d     call    0x18d            	CALL	_delay_ms
+00016a   0b01     movai   0x1              	MOVAI	0x01
+00016b   1596     movra   0x16             	MOVRA	STK00
+00016c   0b00     movai   0                	MOVAI	0x00
+00016d   218e     call    0x18e            	CALL	_delay_ms
                                            ;	.line	251; "MC30P6250_C.c"	GIE = 1;
-00016d   3b8e     bset    0xe, 0x7         	BSET	_INTEbits,7
+00016e   3b8e     bset    0xe, 0x7         	BSET	_INTEbits,7
                                            ;	.line	252; "MC30P6250_C.c"	}
-00016e   000c     return                   	RETURN	
+00016f   000c     return                   	RETURN	
                                            ; exit point of _Sys_Init
                                            
                                            ;***
@@ -1025,15 +1026,15 @@ Address  Value    Disassembly              Source
                                            _TIMER0_INT_Init	;Function start
                                            ; 2 exit points
                                            ;	.line	208; "MC30P6250_C.c"	T0CR = (0x01 << 2) | (0x01 << 0); // 时钟为CPU时钟  预分频器分配给T0而不是WDT  定时器64分频
-00016f   0b05     movai   0x5              	MOVAI	0x05
-000170   15c1     movra   0x41             	MOVRA	_T0CR
+000170   0b05     movai   0x5              	MOVAI	0x05
+000171   15c1     movra   0x41             	MOVRA	_T0CR
                                            ;	.line	210; "MC30P6250_C.c"	T0CNT = 255 - 62; // 递增计数器，需要手动装载
-000171   0bc1     movai   0xc1             	MOVAI	0xc1
-000172   1581     movra   0x1              	MOVRA	_T0CNT
+000172   0bc1     movai   0xc1             	MOVAI	0xc1
+000173   1581     movra   0x1              	MOVRA	_T0CNT
                                            ;	.line	211; "MC30P6250_C.c"	T0IE = 1;
-000173   380e     bset    0xe, 0           	BSET	_INTEbits,0
+000174   380e     bset    0xe, 0           	BSET	_INTEbits,0
                                            ;	.line	212; "MC30P6250_C.c"	}
-000174   000c     return                   	RETURN	
+000175   000c     return                   	RETURN	
                                            ; exit point of _TIMER0_INT_Init
                                            
                                            ;***
@@ -1046,27 +1047,27 @@ Address  Value    Disassembly              Source
                                            _IO_Init	;Function start
                                            ; 2 exit points
                                            ;	.line	186; "MC30P6250_C.c"	P1 = 0x01 << 2; // P12默认输出高电平，不点亮灯光
-000175   0b04     movai   0x4              	MOVAI	0x04
-000176   1586     movra   0x6              	MOVRA	_P1
+000176   0b04     movai   0x4              	MOVAI	0x04
+000177   1586     movra   0x6              	MOVRA	_P1
                                            ;	.line	187; "MC30P6250_C.c"	DDR1 = 0x00;    // 1:input 0:output
-000177   1dc6     clrr    0x46             	CLRR	_DDR1
+000178   1dc6     clrr    0x46             	CLRR	_DDR1
                                            ;	.line	188; "MC30P6250_C.c"	PUCON = 0xff;   // 0:Effective 1:invalid
-000178   0bff     movai   0xff             	MOVAI	0xff
-000179   158d     movra   0xd              	MOVRA	_PUCON
+000179   0bff     movai   0xff             	MOVAI	0xff
+00017a   158d     movra   0xd              	MOVRA	_PUCON
                                            ;	.line	189; "MC30P6250_C.c"	PDCON = 0xff;   // 0:Effective 1:invalid
-00017a   0bff     movai   0xff             	MOVAI	0xff
-00017b   158b     movra   0xb              	MOVRA	_PDCON
+00017b   0bff     movai   0xff             	MOVAI	0xff
+00017c   158b     movra   0xb              	MOVRA	_PDCON
                                            ;	.line	190; "MC30P6250_C.c"	ODCON = 0x00;   // 0:推挽输出  1:开漏输出
-00017c   1d8c     clrr    0xc              	CLRR	_ODCON
+00017d   1d8c     clrr    0xc              	CLRR	_ODCON
                                            ;	.line	192; "MC30P6250_C.c"	KEY_DETECT_INIT();
-00017d   39c6     bset    0x46, 0x3        	BSET	_DDR1bits,3
-00017e   3d8d     bclr    0xd, 0x3         	BCLR	_PUCONbits,3
+00017e   39c6     bset    0x46, 0x3        	BSET	_DDR1bits,3
+00017f   3d8d     bclr    0xd, 0x3         	BCLR	_PUCONbits,3
                                            ;	.line	194; "MC30P6250_C.c"	RT_DETECT_INIT();
-00017f   3846     bset    0x46, 0          	BSET	_DDR1bits,0
-000180   3c0d     bclr    0xd, 0           	BCLR	_PUCONbits,0
-000181   3a0b     bset    0xb, 0x4         	BSET	_PDCONbits,4
+000180   3846     bset    0x46, 0          	BSET	_DDR1bits,0
+000181   3c0d     bclr    0xd, 0           	BCLR	_PUCONbits,0
+000182   3a0b     bset    0xb, 0x4         	BSET	_PDCONbits,4
                                            ;	.line	196; "MC30P6250_C.c"	}
-000182   000c     return                   	RETURN	
+000183   000c     return                   	RETURN	
                                            ; exit point of _IO_Init
                                            
                                            ;***
@@ -1080,18 +1081,18 @@ Address  Value    Disassembly              Source
                                            ; 2 exit points
                                            ;	.line	174; "MC30P6250_C.c"	__endasm;
                                            	;
-000183   0b40     movai   0x40             	movai	0x40;
-000184   1584     movra   0x4              	movra	FSR;
-000185   0b30     movai   0x30             	movai	48;
-000186   1587     movra   0x7              	movra	0x07;
-000187   1b84     decr    0x4              	decr	FSR;
-000188   1d80     clrr    0                	clrr	INDF;
-000189   1a87     djzr    0x7              	djzr	0x07;
-00018a   2987     goto    0x187            	goto	$ - 3;
-00018b   1d87     clrr    0x7              	clrr	0x07;
+000184   0b40     movai   0x40             	movai	0x40;
+000185   1584     movra   0x4              	movra	FSR;
+000186   0b30     movai   0x30             	movai	48;
+000187   1587     movra   0x7              	movra	0x07;
+000188   1b84     decr    0x4              	decr	FSR;
+000189   1d80     clrr    0                	clrr	INDF;
+00018a   1a87     djzr    0x7              	djzr	0x07;
+00018b   2988     goto    0x188            	goto	$ - 3;
+00018c   1d87     clrr    0x7              	clrr	0x07;
                                            	
                                            ;	.line	175; "MC30P6250_C.c"	}
-00018c   000c     return                   	RETURN	
+00018d   000c     return                   	RETURN	
                                            ; exit point of _C_RAM
                                            
                                            ;***
@@ -1112,55 +1113,55 @@ Address  Value    Disassembly              Source
                                            _delay_ms	;Function start
                                            ; 2 exit points
                                            ;	.line	139; "MC30P6250_C.c"	void delay_ms(u16 xms)
-00018d   1598     movra   0x18             	MOVRA	r0x1014
-00018e   1616     movar   0x16             	MOVAR	STK00
-00018f   1597     movra   0x17             	MOVRA	r0x1015
+00018e   1598     movra   0x18             	MOVRA	r0x1014
+00018f   1616     movar   0x16             	MOVAR	STK00
+000190   1597     movra   0x17             	MOVRA	r0x1015
                                            _00108_DS_
                                            ;	.line	141; "MC30P6250_C.c"	while (xms)
-000190   1617     movar   0x17             	MOVAR	r0x1015
-000191   1718     orar    0x18             	ORAR	r0x1014
-000192   3503     jbclr   0x3, 0x2         	JBCLR	STATUS,2
-000193   29ac     goto    0x1ac            	GOTO	_00111_DS_
+000191   1617     movar   0x17             	MOVAR	r0x1015
+000192   1718     orar    0x18             	ORAR	r0x1014
+000193   3503     jbclr   0x3, 0x2         	JBCLR	STATUS,2
+000194   29ad     goto    0x1ad            	GOTO	_00111_DS_
                                            ;	.line	144; "MC30P6250_C.c"	while (i--)
-000194   0b17     movai   0x17             	MOVAI	0x17
-000195   1599     movra   0x19             	MOVRA	r0x1016
-000196   0b02     movai   0x2              	MOVAI	0x02
-000197   159a     movra   0x1a             	MOVRA	r0x1017
+000195   0b17     movai   0x17             	MOVAI	0x17
+000196   1599     movra   0x19             	MOVRA	r0x1016
+000197   0b02     movai   0x2              	MOVAI	0x02
+000198   159a     movra   0x1a             	MOVRA	r0x1017
                                            _00105_DS_
-000198   1619     movar   0x19             	MOVAR	r0x1016
-000199   159b     movra   0x1b             	MOVRA	r0x1018
-00019a   161a     movar   0x1a             	MOVAR	r0x1017
-00019b   159c     movra   0x1c             	MOVRA	r0x1019
-00019c   0bff     movai   0xff             	MOVAI	0xff
-00019d   1f99     addra   0x19             	ADDRA	r0x1016
-00019e   3003     jbset   0x3, 0           	JBSET	STATUS,0
-00019f   1b9a     decr    0x1a             	DECR	r0x1017
-0001a0   161b     movar   0x1b             	MOVAR	r0x1018
-0001a1   171c     orar    0x1c             	ORAR	r0x1019
-0001a2   3503     jbclr   0x3, 0x2         	JBCLR	STATUS,2
-0001a3   29a6     goto    0x1a6            	GOTO	_00107_DS_
+000199   1619     movar   0x19             	MOVAR	r0x1016
+00019a   159b     movra   0x1b             	MOVRA	r0x1018
+00019b   161a     movar   0x1a             	MOVAR	r0x1017
+00019c   159c     movra   0x1c             	MOVRA	r0x1019
+00019d   0bff     movai   0xff             	MOVAI	0xff
+00019e   1f99     addra   0x19             	ADDRA	r0x1016
+00019f   3003     jbset   0x3, 0           	JBSET	STATUS,0
+0001a0   1b9a     decr    0x1a             	DECR	r0x1017
+0001a1   161b     movar   0x1b             	MOVAR	r0x1018
+0001a2   171c     orar    0x1c             	ORAR	r0x1019
+0001a3   3503     jbclr   0x3, 0x2         	JBCLR	STATUS,2
+0001a4   29a7     goto    0x1a7            	GOTO	_00107_DS_
                                            ;	.line	146; "MC30P6250_C.c"	Nop();
-0001a4   0000     nop                      	nop	
-0001a5   2998     goto    0x198            	GOTO	_00105_DS_
+0001a5   0000     nop                      	nop	
+0001a6   2999     goto    0x199            	GOTO	_00105_DS_
                                            _00107_DS_
                                            ;	.line	148; "MC30P6250_C.c"	xms--; // 把 --操作放在while()判断条件外面，更节省空间
-0001a6   0bff     movai   0xff             	MOVAI	0xff
-0001a7   1f97     addra   0x17             	ADDRA	r0x1015
-0001a8   3003     jbset   0x3, 0           	JBSET	STATUS,0
-0001a9   1b98     decr    0x18             	DECR	r0x1014
+0001a7   0bff     movai   0xff             	MOVAI	0xff
+0001a8   1f97     addra   0x17             	ADDRA	r0x1015
+0001a9   3003     jbset   0x3, 0           	JBSET	STATUS,0
+0001aa   1b98     decr    0x18             	DECR	r0x1014
                                            ;	.line	152; "MC30P6250_C.c"	__endasm;
                                            	;
-0001aa   000e     clrwdt                   	clrwdt;
+0001ab   000e     clrwdt                   	clrwdt;
                                            	
-0001ab   2990     goto    0x190            	GOTO	_00108_DS_
+0001ac   2991     goto    0x191            	GOTO	_00108_DS_
                                            _00111_DS_
                                            ;	.line	154; "MC30P6250_C.c"	}
-0001ac   000c     return                   	RETURN	
+0001ad   000c     return                   	RETURN	
                                            ; exit point of _delay_ms
                                            
                                            
                                            ;	code size estimation:
-                                           ;	  398+    0 =   398 instructions (  796 byte)
+                                           ;	  399+    0 =   399 instructions (  798 byte)
                                            
                                            	end
 
@@ -1180,9 +1181,9 @@ MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
 0280 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
 02C0 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
 0300 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
-0340 : XXXXXXXXXXXXXXXX XXXXXXXXXX------ ---------------- ----------------
+0340 : XXXXXXXXXXXXXXXX XXXXXXXXXXXX---- ---------------- ----------------
 
 All other memory blocks unused.
 
-Program Memory Words Used:   422
+Program Memory Words Used:   423
 

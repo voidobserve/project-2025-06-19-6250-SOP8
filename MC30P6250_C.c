@@ -67,24 +67,24 @@
 #define RT_CHARGE_DET_PIN (P10D)
 #endif
 
-enum
-{
-    MODE_FADE = 0,  // 整体呼吸
-    MODE_ALWAYS_ON, // 整体常亮
-    MODE_FLASH,     // 整体闪烁
-    MODE_TRIGER,    // 震动闪灯
+// enum
+// {
+//     MODE_FADE = 0,  // 整体呼吸
+//     MODE_ALWAYS_ON, // 整体常亮
+//     MODE_FLASH,     // 整体闪烁
+//     MODE_TRIGER,    // 震动闪灯
 
-    MODE_ALWAYS_ON_LIGHT1,       // 灯1常亮
-    MODE_ALWAYS_ON_LIGHT2,       // 灯2常亮
-    MODE_FLASH_LIGHT1,           // 灯1闪烁
-    MODE_FLASH_LIGHT2,           // 灯2闪烁
-    MODE_FLASH_LIGHT1_OR_LIGHT2, // 交替闪烁
-    MODE_FADE_LIGHT1,            // 灯1渐变
-    MODE_FADE_LIGHT2,            // 灯2渐变
-    MODE_FADE_IN_TURN,           // 同时交替渐变
+//     MODE_ALWAYS_ON_LIGHT1,       // 灯1常亮
+//     MODE_ALWAYS_ON_LIGHT2,       // 灯2常亮
+//     MODE_FLASH_LIGHT1,           // 灯1闪烁
+//     MODE_FLASH_LIGHT2,           // 灯2闪烁
+//     MODE_FLASH_LIGHT1_OR_LIGHT2, // 交替闪烁
+//     MODE_FADE_LIGHT1,            // 灯1渐变
+//     MODE_FADE_LIGHT2,            // 灯2渐变
+//     MODE_FADE_IN_TURN,           // 同时交替渐变
 
-    MODE_MAX,
-};
+//     MODE_MAX,
+// };
 
 // 定义灯光的模式
 enum
@@ -266,7 +266,11 @@ void params_init(void)
     sleep_enalbe = 1;
     // sleep_enalbe = 0;
     // light_mode = MODE_FADE; // 上电默认模式
-    light_mode = LIGHT_MODE_NONE; // 上电默认模式
+    
+    // light_mode = LIGHT_MODE_NONE; // 上电默认模式
+
+    light_mode = LIGHT_MODE_ALWAYS_ON;
+
     // light_mode = MODE_ALWAYS_ON; // 上电默认常亮
 }
 
